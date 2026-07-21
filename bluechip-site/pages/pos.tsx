@@ -134,6 +134,17 @@ const strategyItems = [
   'Secure, real-time visibility that keeps leadership aligned across every shift.',
 ]
 
+const strategyMetrics = [
+  { label: 'Branch readiness', value: '98.4%' },
+  { label: 'Transaction flow', value: '24/7' },
+  { label: 'Support response', value: '< 15 min' },
+  { label: 'Queue throughput', value: '126 / min' },
+  { label: 'Card payment success', value: '99.2%' },
+  { label: 'Inventory sync', value: '97.8%' },
+  { label: 'Shift coverage', value: '94.6%' },
+  { label: 'Average order time', value: '12 sec' },
+]
+
 function DashboardIllustration({ type }: { type: string }) {
   const common = 'h-24 w-full rounded-2xl bg-gradient-to-br p-3'
 
@@ -274,52 +285,37 @@ export default function POS() {
             </div>
 
             <div className="relative min-h-[420px] overflow-hidden bg-slate-900 p-3">
-              <div className="h-full min-h-[420px] rounded-[1.5rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,_rgba(129,140,248,0.22),_transparent_25%),linear-gradient(135deg,_#0f172a_0%,_#111827_55%,_#1f2937_100%)] p-5">
-                <div className="flex h-full flex-col justify-between rounded-[1.2rem] border border-white/10 bg-white/8 p-4 backdrop-blur">
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-[1rem] border border-white/10 bg-white/10 p-3">
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-300">Sales velocity</div>
-                      <div className="mt-2 text-2xl font-semibold text-white">$24,890</div>
-                      <div className="mt-1 text-sm text-emerald-300">+12.4% vs prior period</div>
-                    </div>
-                    <div className="rounded-[1rem] border border-white/10 bg-white/10 p-3">
-                      <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-300">Margin yield</div>
-                      <div className="mt-2 text-2xl font-semibold text-white">68.2%</div>
-                      <div className="mt-1 text-sm text-slate-300">Premium mix performance</div>
-                    </div>
-                  </div>
+              <div className="relative h-full min-h-[420px] overflow-hidden rounded-[1.5rem] border border-white/10 bg-slate-950">
+                <img
+                  src="/images/stock/beautiful-family-standing-cash-counter.jpg"
+                  alt="Family standing by the cash counter while completing a POS payment"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-900/20" />
 
-                  <div className="rounded-[1.2rem] border border-white/10 bg-slate-950/50 p-4">
-                    <div className="flex items-center justify-between text-sm text-slate-300">
-                      <span>Revenue overview</span>
-                      <span className="rounded-full bg-emerald-500/20 px-2 py-1 text-xs font-semibold text-emerald-300">Live</span>
-                    </div>
-                    <div className="mt-4 flex h-24 items-end gap-2">
-                      {[48, 72, 60, 92, 84, 112, 98].map((height, index) => (
-                        <div key={index} className="flex-1 rounded-t-xl bg-gradient-to-t from-indigo-500 to-cyan-400" style={{ height: `${height}px` }} />
-                      ))}
-                    </div>
-                  </div>
+                <div className="absolute left-4 top-4 max-w-[260px] rounded-[1rem] border border-white/15 bg-slate-950/65 p-3 text-white backdrop-blur-sm">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-300">Billing counter POS</div>
+                  <div className="mt-2 text-xl font-semibold">Fast payment at the counter, smooth customer flow</div>
+                </div>
 
-                  <div className="grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-[1rem] border border-white/10 bg-white/10 p-3">
-                      <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Monthly</div>
-                      <div className="mt-2 text-lg font-semibold text-white">$182k</div>
-                    </div>
-                    <div className="rounded-[1rem] border border-white/10 bg-white/10 p-3">
-                      <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Yearly</div>
-                      <div className="mt-2 text-lg font-semibold text-white">$2.1M</div>
-                    </div>
-                    <div className="rounded-[1rem] border border-white/10 bg-white/10 p-3">
-                      <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Customers</div>
-                      <div className="mt-2 text-lg font-semibold text-white">1.4k</div>
-                    </div>
+                <div className="absolute right-4 top-4 rounded-[1rem] border border-emerald-400/40 bg-emerald-500/15 px-3 py-2 text-sm font-semibold text-emerald-200 backdrop-blur-sm">
+                  4.9 customer satisfaction
+                </div>
+
+                <div className="absolute inset-x-4 bottom-4 grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-[1rem] border border-white/15 bg-slate-950/70 p-3 text-white backdrop-blur-sm">
+                    <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Average ticket</div>
+                    <div className="mt-2 text-lg font-semibold">$38</div>
+                  </div>
+                  <div className="rounded-[1rem] border border-white/15 bg-slate-950/70 p-3 text-white backdrop-blur-sm">
+                    <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Payment speed</div>
+                    <div className="mt-2 text-lg font-semibold">12s</div>
+                  </div>
+                  <div className="rounded-[1rem] border border-white/15 bg-slate-950/70 p-3 text-white backdrop-blur-sm">
+                    <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Queue relief</div>
+                    <div className="mt-2 text-lg font-semibold">76%</div>
                   </div>
                 </div>
-              </div>
-              <div className="absolute inset-x-6 bottom-6 rounded-[1.25rem] border border-white/20 bg-slate-950/70 p-5 text-white backdrop-blur">
-                <div className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300">Built for scale</div>
-                <div className="mt-2 text-lg font-medium">Flexible workflows for retail, hospitality, and service-led businesses.</div>
               </div>
             </div>
           </div>
@@ -337,7 +333,7 @@ export default function POS() {
                 <div key={card.title} className="min-h-[220px] rounded-[2rem] border border-slate-200/80 bg-white/90 p-6 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.12)]">
                   <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start">
                     <div className="min-w-0">
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.35em] text-indigo-600">{card.title}</div>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.35em] text-indigo-600">Live signal</div>
                       <div className="mt-4 text-2xl font-semibold text-slate-900">{card.title}</div>
                       <p className="mt-4 text-sm leading-6 text-slate-600">{card.description}</p>
                     </div>
@@ -361,23 +357,22 @@ export default function POS() {
           </div>
 
           <div className="h-full rounded-[2rem] border border-slate-200 bg-slate-900 p-6 text-white shadow-[0_25px_70px_-25px_rgba(15,23,42,0.4)]">
-            <div className="h-full rounded-[1.5rem] border border-white/10 bg-white/10 p-5 backdrop-blur flex flex-col justify-between">
+            <div className="h-full rounded-[1.5rem] border border-white/10 bg-white/10 p-5 backdrop-blur flex flex-col justify-between gap-4">
               <div>
                 <div className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300">Operational strategy</div>
-                <div className="mt-4 space-y-3">
-                  {strategyItems.map((item) => (
-                    <div key={item} className="rounded-2xl bg-white/10 p-4 text-sm leading-6 text-slate-200">
-                      {item}
-                    </div>
-                  ))}
-                </div>
+                <div className="mt-4 text-lg font-semibold text-white">A tighter executive view for daily business control.</div>
+                <p className="mt-3 text-sm leading-6 text-slate-300">
+                  Designed to give leaders fast visibility on performance, staffing readiness, and business momentum.
+                </p>
               </div>
-              <div className="mt-6 rounded-[1.75rem] border border-white/10 bg-white/5 p-4 text-sm leading-6 text-slate-200">
-                <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Built for every environment</div>
-                <div className="mt-3 space-y-2">
-                  <p>Modular operations that scale across stores, kitchens, and service counters.</p>
-                  <p>Secure workflows and real-time insights keep staff aligned and leadership informed.</p>
-                </div>
+
+              <div className="grid gap-3">
+                {strategyMetrics.map((metric) => (
+                  <div key={metric.label} className="rounded-[1.25rem] bg-white/10 p-4">
+                    <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">{metric.label}</div>
+                    <div className="mt-2 text-2xl font-semibold text-white">{metric.value}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
