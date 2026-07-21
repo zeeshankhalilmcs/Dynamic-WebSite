@@ -1,5 +1,6 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Clients from '../components/Clients'
 import Hero from '../components/Hero'
 
 const capabilities = [
@@ -76,6 +77,7 @@ export default function Home(){
           </div>
         </section>
       </main>
+      <Clients />
       <Footer />
     </div>
   )
