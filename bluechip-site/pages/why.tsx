@@ -9,9 +9,33 @@ const reasons = [
 ]
 
 const pillars = [
-  'Operational clarity at every level',
-  'Faster decision-making with clean reporting',
-  'Reliable deployment with minimal disruption',
+  {
+    title: 'Operational clarity',
+    copy: 'We create systems that make daily operations clearer, calmer, and easier to run.',
+  },
+  {
+    title: 'Faster decisions',
+    copy: 'Clean reporting and better visibility help leaders act with confidence.',
+  },
+  {
+    title: 'Reliable rollout',
+    copy: 'Every deployment is structured to reduce disruption and create long-term stability.',
+  },
+]
+
+const values = [
+  {
+    title: 'Who we are',
+    copy: 'We are a hands-on technology partner focused on practical delivery, measured execution, and lasting business value.',
+  },
+  {
+    title: 'Our mission',
+    copy: 'We help businesses simplify complex operations with software that is dependable, thoughtful, and built around real workflows.',
+  },
+  {
+    title: 'Our vision',
+    copy: 'We aim to help ambitious organizations grow through modern systems that are both scalable and easy to trust.',
+  },
 ]
 
 const steps = ['Discover the real workflows', 'Translate them into a smarter system', 'Launch with confidence and support']
@@ -64,13 +88,54 @@ export default function Why() {
           </div>
         </section>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <section className="mt-8 grid gap-4 md:grid-cols-3">
           {pillars.map((pillar) => (
-            <div key={pillar} className="rounded-[1.5rem] border border-slate-200 bg-white/80 p-6 text-sm font-medium text-slate-700 shadow-sm">
-              {pillar}
+            <div key={pillar.title} className="rounded-[1.5rem] border border-slate-200 bg-white/80 p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-slate-900">{pillar.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{pillar.copy}</p>
             </div>
           ))}
-        </div>
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="rounded-[2rem] border border-slate-200 bg-slate-950 p-8 text-white shadow-[0_25px_70px_-25px_rgba(15,23,42,0.35)]">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Our story</p>
+            <h2 className="mt-3 text-2xl font-semibold">Built around real business needs, not generic software templates.</h2>
+            <p className="mt-4 text-base leading-7 text-slate-300">
+              We work closely with teams to understand the way work actually happens, then translate that into dependable systems that support growth without unnecessary friction.
+            </p>
+            <div className="mt-6 grid gap-3">
+              {values.map((item) => (
+                <div key={item.title} className="rounded-[1.25rem] border border-white/10 bg-white/10 p-4">
+                  <div className="text-base font-semibold text-white">{item.title}</div>
+                  <div className="mt-2 text-sm leading-6 text-slate-300">{item.copy}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="glass-card border-slate-200/80 bg-white/80 p-8 lg:p-10">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">What this means for your business</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900">A calm, credible partner for growth, modernization, and execution.</h2>
+            <div className="mt-6 space-y-4">
+              <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50/80 p-4">
+                <div className="text-base font-semibold text-slate-900">Practical delivery</div>
+                <div className="mt-2 text-sm leading-6 text-slate-600">We focus on outcomes that help teams move faster without introducing unnecessary complexity.</div>
+              </div>
+              <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50/80 p-4">
+                <div className="text-base font-semibold text-slate-900">Long-term support</div>
+                <div className="mt-2 text-sm leading-6 text-slate-600">Our work continues beyond launch so the system stays aligned as the business evolves.</div>
+              </div>
+              <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50/80 p-4">
+                <div className="text-base font-semibold text-slate-900">Trusted partnership</div>
+                <div className="mt-2 text-sm leading-6 text-slate-600">We stay close to the operation, helping teams adapt with confidence and clarity.</div>
+              </div>
+            </div>
+            <div className="mt-8 rounded-[1.5rem] bg-slate-900 px-5 py-4 text-sm font-semibold text-white">
+              Ready to build something dependable, modern, and built around your business?
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

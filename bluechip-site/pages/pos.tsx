@@ -145,6 +145,54 @@ const strategyMetrics = [
   { label: 'Average order time', value: '12 sec' },
 ]
 
+const retailBenefits = [
+  {
+    title: 'Accelerated checkout',
+    copy: 'Shorten payment time and keep lines moving with faster, intuitive billing at every counter.',
+    icon: '01',
+  },
+  {
+    title: 'Inventory in sync',
+    copy: 'Keep stock levels aligned across departments, shelves, and warehouse movement in real time.',
+    icon: '02',
+  },
+  {
+    title: 'Loyalty that connects',
+    copy: 'Turn repeat purchases into personalized service with loyalty, CRM, and targeted offers.',
+    icon: '03',
+  },
+  {
+    title: 'Finance ready',
+    copy: 'Give leadership clean visibility into margin, expenses, and growth without manual work.',
+    icon: '04',
+  },
+]
+
+const retailSegments = [
+  {
+    title: 'Supermarkets & grocery',
+    copy: 'Support high-volume lanes, promotions, and daily replenishment without losing control.',
+  },
+  {
+    title: 'Fashion & department stores',
+    copy: 'Balance multiple counters, returns, and seasonal campaigns with a calm operating flow.',
+  },
+  {
+    title: 'Electronics & specialty retail',
+    copy: 'Blend fast sales, warranty handling, and service-led offers in one consistent experience.',
+  },
+  {
+    title: 'Multi-branch operations',
+    copy: 'Align inventory, pricing, performance, and store-level reporting from a single view.',
+  },
+]
+
+const executivePoints = [
+  ['Reduced queue time', 'Shorter payment flow and better counter discipline for peak periods.'],
+  ['Clearer oversight', 'Leadership gets real-time visibility across performance, sales, and readiness.'],
+  ['Smarter service', 'Staff can focus on experience while the system handles the heavy operational work.'],
+]
+
 function DashboardIllustration({ type }: { type: string }) {
   const common = 'h-24 w-full rounded-2xl bg-gradient-to-br p-3'
 
@@ -258,27 +306,27 @@ export default function POS() {
         <section className="glass-card overflow-hidden border-slate-200/80 bg-white/85 p-0">
           <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-8 lg:p-12">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Point of sale systems</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Retail POS platform</p>
               <h1 className="mt-4 text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
-                A refined POS platform built for speed, visibility, and control.
+                Turn every checkout into a faster, smarter retail moment.
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-                From retail counters to restaurants and fuel outlets, our systems blend refined design with operational discipline so every transaction feels effortless and every decision is better informed.
+                From supermarkets and grocery chains to fashion and specialty stores, our POS experience keeps counters moving, inventory aligned, and leadership informed in real time.
               </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#features" className="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700">
+                  Explore platform
+                </a>
+                <a href="#segments" className="rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50">
+                  See retail formats
+                </a>
+              </div>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 {features.map((item) => (
                   <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50/80 p-4 text-sm font-medium text-slate-700 shadow-sm">
                     {item}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="rounded-2xl border border-slate-200 bg-white/70 p-4">
-                    <div className="text-xl font-semibold text-slate-900">{stat.value}</div>
-                    <div className="mt-1 text-sm text-slate-500">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -294,8 +342,8 @@ export default function POS() {
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-900/20" />
 
                 <div className="absolute left-4 top-4 max-w-[260px] rounded-[1rem] border border-white/15 bg-slate-950/65 p-3 text-white backdrop-blur-sm">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-300">Billing counter POS</div>
-                  <div className="mt-2 text-xl font-semibold">Fast payment at the counter, smooth customer flow</div>
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-300">Retail checkout live</div>
+                  <div className="mt-2 text-xl font-semibold">Fast billing, strong service, better satisfaction</div>
                 </div>
 
                 <div className="absolute right-4 top-4 rounded-[1rem] border border-emerald-400/40 bg-emerald-500/15 px-3 py-2 text-sm font-semibold text-emerald-200 backdrop-blur-sm">
@@ -321,36 +369,30 @@ export default function POS() {
           </div>
         </section>
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
+        <section className="mt-8 grid gap-4 lg:grid-cols-4" id="features">
+          {retailBenefits.map((item) => (
+            <div key={item.title} className="rounded-[1.75rem] border border-slate-200 bg-white/80 p-6 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.12)]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-50 text-sm font-semibold text-indigo-600">
+                {item.icon}
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-slate-900">{item.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{item.copy}</p>
+            </div>
+          ))}
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <div className="glass-card border-slate-200/80 bg-white/80 p-8 lg:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Dashboard experience</p>
-            <h2 className="mt-3 text-2xl font-semibold text-slate-900">A calm, premium control layer for daily operations.</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Why retail teams choose us</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900">A calm operating layer for counters, staff, and store leadership.</h2>
             <p className="mt-4 text-base leading-7 text-slate-600">
-              A refined operational experience that blends elegant visibility with clear execution, so teams stay confident and every shift feels composed.
+              The experience is designed to feel polished for customers and practical for teams, giving every store the confidence to run faster, smoother, and more predictably.
             </p>
-            <div className="mt-6 space-y-5">
-              {dashboardModules.map((card) => (
-                <div key={card.title} className="min-h-[220px] rounded-[2rem] border border-slate-200/80 bg-white/90 p-6 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.12)]">
-                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start">
-                    <div className="min-w-0">
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.35em] text-indigo-600">Live signal</div>
-                      <div className="mt-4 text-2xl font-semibold text-slate-900">{card.title}</div>
-                      <p className="mt-4 text-sm leading-6 text-slate-600">{card.description}</p>
-                    </div>
-                    <div className="w-full lg:max-w-[220px] lg:justify-self-end">
-                      <DashboardIllustration type={card.type} />
-                    </div>
-                  </div>
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-[1.5rem] bg-slate-50 p-4">
-                      <div className="text-[10px] uppercase tracking-[0.35em] text-slate-500">Figure</div>
-                      <div className="mt-2 text-xl font-semibold text-slate-900">{card.value}</div>
-                    </div>
-                    <div className="rounded-[1.5rem] bg-slate-50 p-4">
-                      <div className="text-[10px] uppercase tracking-[0.35em] text-slate-500">Signal</div>
-                      <div className="mt-2 text-xl font-semibold text-slate-900">{card.metric}</div>
-                    </div>
-                  </div>
+            <div className="mt-6 space-y-3">
+              {stats.map((stat) => (
+                <div key={stat.label} className="flex items-center justify-between rounded-[1.25rem] border border-slate-200 bg-slate-50/80 px-4 py-3">
+                  <span className="text-sm font-medium text-slate-600">{stat.label}</span>
+                  <span className="text-sm font-semibold text-slate-900">{stat.value}</span>
                 </div>
               ))}
             </div>
@@ -379,96 +421,72 @@ export default function POS() {
         </section>
 
         <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white/95 p-8 shadow-[0_25px_70px_-25px_rgba(15,23,42,0.16)] lg:p-10">
-          <div className="rounded-[2rem] bg-slate-950 p-6 shadow-xl">
-            <div className="flex flex-col gap-6">
-              <div className="h-[460px] rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-800 p-6">
-                <div className="flex items-center justify-between text-sm uppercase tracking-[0.3em] text-slate-400">
-                  <div>Command dashboard</div>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs text-slate-100">
-                    Live
-                  </div>
-                </div>
-                <div className="mt-6 rounded-[1.5rem] bg-slate-900/80 p-4">
-                  <div className="flex items-center justify-between gap-4 text-white">
-                    <div>
-                      <div className="text-xs uppercase tracking-[0.3em] text-slate-400">Today sales</div>
-                      <div className="mt-2 text-3xl font-semibold">$24,890</div>
-                    </div>
-                    <div className="rounded-[1.5rem] bg-slate-950/80 px-4 py-3 text-right">
-                      <div className="text-xs uppercase tracking-[0.3em] text-slate-400">Growth</div>
-                      <div className="mt-2 text-xl font-semibold text-emerald-300">+12.4%</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                  {[
-                    ['Open deals', '1,047'],
-                    ['Won deals', '70'],
-                    ['Lost deals', '94'],
-                  ].map(([label, value]) => (
-                    <div key={label} className="rounded-[1.5rem] bg-slate-900/80 p-4 text-sm text-slate-300">
-                      <div className="text-xs uppercase tracking-[0.3em] text-slate-500">{label}</div>
-                      <div className="mt-3 text-xl font-semibold text-white">{value}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 h-[240px] overflow-hidden rounded-[1.5rem] bg-slate-900/80 p-4">
-                  <div className="h-full rounded-[1.5rem] border border-white/10 bg-gradient-to-b from-slate-950 to-slate-900 p-4">
-                    <div className="grid h-full grid-cols-[1.1fr_0.9fr] gap-4">
-                      <div className="space-y-4">
-                        <div className="h-2 rounded-full bg-slate-800" />
-                        <div className="h-2 rounded-full bg-slate-800/80" />
-                        <div className="h-2 rounded-full bg-slate-800" />
-                        <div className="mt-4 grid grid-cols-4 gap-3">
-                          {[64, 78, 94, 84].map((width, index) => (
-                            <div key={index} className="h-28 rounded-[1rem] bg-gradient-to-t from-sky-400 to-indigo-500" style={{ width: `${width}%` }} />
-                          ))}
-                        </div>
-                      </div>
-                      <div className="rounded-[1.5rem] bg-slate-950/80 p-4">
-                        <div className="text-xs uppercase tracking-[0.3em] text-slate-500">Weekly pulse</div>
-                        <div className="mt-4 flex flex-col gap-3 text-white">
-                          <div className="rounded-2xl bg-slate-900/90 p-3">
-                            <div className="text-sm text-slate-400">Revenue</div>
-                            <div className="mt-2 text-xl font-semibold">$182k</div>
-                          </div>
-                          <div className="rounded-2xl bg-slate-900/90 p-3">
-                            <div className="text-sm text-slate-400">Customers</div>
-                            <div className="mt-2 text-xl font-semibold">1.4k</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-[1.75rem] border border-white/10 bg-slate-900/80 p-6 text-slate-300">
-                <div className="text-sm uppercase tracking-[0.3em] text-slate-400">Executive dashboard</div>
-                <div className="mt-3 text-lg font-semibold text-white">A premium command surface for revenue, pipeline, and momentum.</div>
-                <div className="mt-3 text-sm leading-6 text-slate-300">
-                  One elevated view with clean signals, trend clarity, and the insight teams trust every day.
-                </div>
-              </div>
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Retail modules</p>
+              <h2 className="mt-3 text-2xl font-semibold text-slate-900">Everything from checkout to insight, in one refined workflow.</h2>
             </div>
+            <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-600">
+              Built for stores, branches, and daily operations
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            {dashboardModules.slice(0, 4).map((card) => (
+              <div key={card.title} className="min-h-[220px] rounded-[2rem] border border-slate-200/80 bg-white/90 p-6 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.12)]">
+                <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start">
+                  <div className="min-w-0">
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.35em] text-indigo-600">Live signal</div>
+                    <div className="mt-4 text-2xl font-semibold text-slate-900">{card.title}</div>
+                    <p className="mt-4 text-sm leading-6 text-slate-600">{card.description}</p>
+                  </div>
+                  <div className="w-full lg:max-w-[220px] lg:justify-self-end">
+                    <DashboardIllustration type={card.type} />
+                  </div>
+                </div>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-[1.5rem] bg-slate-50 p-4">
+                    <div className="text-[10px] uppercase tracking-[0.35em] text-slate-500">Figure</div>
+                    <div className="mt-2 text-xl font-semibold text-slate-900">{card.value}</div>
+                  </div>
+                  <div className="rounded-[1.5rem] bg-slate-50 p-4">
+                    <div className="text-[10px] uppercase tracking-[0.35em] text-slate-500">Signal</div>
+                    <div className="mt-2 text-xl font-semibold text-slate-900">{card.metric}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="glass-card border-slate-200/80 bg-white/80 p-8 lg:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Deployment footprint</p>
-            <h2 className="mt-3 text-2xl font-semibold text-slate-900">Trusted across business models that need dependable daily operations.</h2>
-            <p className="mt-4 text-base leading-7 text-slate-600">
-              The experience is designed to feel calm and confident for staff, while giving leadership complete clarity over performance.
-            </p>
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]" id="segments">
+          <div className="rounded-[2rem] border border-slate-200 bg-slate-950 p-8 text-white shadow-[0_25px_70px_-25px_rgba(15,23,42,0.4)]">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Built for every retail format</p>
+            <h2 className="mt-3 text-2xl font-semibold">From supermarket checkout lanes to multi-branch operations.</h2>
+            <div className="mt-6 grid gap-3">
+              {retailSegments.map((segment) => (
+                <div key={segment.title} className="rounded-[1.25rem] border border-white/10 bg-white/10 p-4">
+                  <div className="text-base font-semibold text-white">{segment.title}</div>
+                  <div className="mt-2 text-sm leading-6 text-slate-300">{segment.copy}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
-            {clients.map((client) => (
-              <div key={client} className="rounded-[1.5rem] border border-slate-200 bg-white/80 p-5 text-sm font-semibold text-slate-700 shadow-sm">
-                {client}
-              </div>
-            ))}
+          <div className="glass-card border-slate-200/80 bg-white/80 p-8 lg:p-10">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Executive confidence</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900">Trusted across the full retail journey.</h2>
+            <div className="mt-6 space-y-4">
+              {executivePoints.map(([title, copy]) => (
+                <div key={title} className="rounded-[1.25rem] border border-slate-200 bg-slate-50/80 p-4">
+                  <div className="text-base font-semibold text-slate-900">{title}</div>
+                  <div className="mt-2 text-sm leading-6 text-slate-600">{copy}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 rounded-[1.5rem] bg-slate-900 px-5 py-4 text-sm font-semibold text-white">
+              Ready to modernize the checkout experience from the first scan to the final payment?
+            </div>
           </div>
         </section>
       </main>

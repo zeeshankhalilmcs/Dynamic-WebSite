@@ -35,7 +35,7 @@ export default function Hero(){
         </div>
 
         <div className="rounded-[2rem] border border-white/10 bg-slate-950/50 p-4 shadow-2xl shadow-slate-950/30 backdrop-blur">
-          <img src="/images/stock/hero.jpg" alt="Business technology hero" className="h-[420px] w-full rounded-[1.5rem] object-cover" />
+          <img src="/images/hero-main.png" alt="Business technology hero" className="h-[420px] w-full rounded-[1.5rem] object-cover" />
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl bg-white/10 p-4">
               <div className="text-sm font-semibold text-slate-200">Custom ERP & POS</div>
