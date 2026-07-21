@@ -1,0 +1,483 @@
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+
+const features = [
+  'Multi-branch retail POS with centralized controls',
+  'Restaurant kitchen sync and order flow visibility',
+  'Fuel station pump control and billing integration',
+  'Barcode, printer, and hardware device compatibility',
+]
+
+const clients = ['Metro Mart', 'Bistro 88', 'City Fuel', 'Care Pharmacy']
+
+const stats = [
+  { label: 'Live transactions', value: '24/7' },
+  { label: 'Average rollout', value: '2 weeks' },
+  { label: 'Support response', value: '< 15 min' },
+]
+
+const dashboardCards = [
+  {
+    title: 'Finance metrics',
+    copy: 'Capture margin health, expenses, and cash-flow movement with clean, executive-friendly views.',
+  },
+  {
+    title: 'Product summary',
+    copy: 'Monitor top-selling products, inventory levels, and category performance in real time.',
+  },
+  {
+    title: 'Profit report',
+    copy: 'Review daily and weekly profitability with focused reporting that highlights growth areas.',
+  },
+  {
+    title: 'Customer summary',
+    copy: 'Understand repeat buyers, loyalty value, and customer behavior across every branch.',
+  },
+  {
+    title: 'Gross profit',
+    copy: 'See gross margin performance at a glance and spot opportunities for better pricing decisions.',
+  },
+  {
+    title: 'Today sales',
+    copy: 'Stay updated on live sales activity, average ticket size, and checkout momentum.',
+  },
+  {
+    title: 'Monthly revenue',
+    copy: 'Compare recurring revenue performance month over month with clear trend visuals.',
+  },
+  {
+    title: 'Yearly revenue',
+    copy: 'Track long-range business growth with strategic summaries built for leadership review.',
+  },
+]
+
+const dashboardModules = [
+  {
+    title: 'Finance metrics',
+    description: 'Capture margin health, expenses, and cash-flow movement with clean, executive-friendly views.',
+    value: '$182k',
+    metric: 'Margin 24%',
+    chart: [18, 28, 22, 36, 30, 40],
+    accent: 'from-violet-500 to-indigo-500',
+    type: 'finance',
+  },
+  {
+    title: 'Product summary',
+    description: 'Monitor top-selling products, inventory levels, and category performance in real time.',
+    value: '128 SKUs',
+    metric: 'Top item: Coffee',
+    chart: [12, 20, 18, 24, 30, 22],
+    accent: 'from-emerald-500 to-teal-500',
+    type: 'product',
+  },
+  {
+    title: 'Profit report',
+    description: 'Review daily and weekly profitability with focused reporting that highlights growth areas.',
+    value: '+14.8%',
+    metric: 'Weekly gain',
+    chart: [22, 28, 34, 30, 38, 44],
+    accent: 'from-amber-500 to-orange-500',
+    type: 'profit',
+  },
+  {
+    title: 'Customer summary',
+    description: 'Understand repeat buyers, loyalty value, and customer behavior across every branch.',
+    value: '1.4k',
+    metric: 'Returning users',
+    chart: [16, 22, 28, 26, 34, 30],
+    accent: 'from-sky-500 to-cyan-500',
+    type: 'customer',
+  },
+  {
+    title: 'Gross profit',
+    description: 'See gross margin performance at a glance and spot opportunities for better pricing decisions.',
+    value: '68.2%',
+    metric: 'Gross margin',
+    chart: [24, 30, 26, 32, 36, 34],
+    accent: 'from-fuchsia-500 to-pink-500',
+    type: 'gross',
+  },
+  {
+    title: 'Today sales',
+    description: 'Stay updated on live sales activity, average ticket size, and checkout momentum.',
+    value: '$24,890',
+    metric: 'Avg ticket $38',
+    chart: [14, 18, 22, 28, 32, 30],
+    accent: 'from-rose-500 to-red-500',
+    type: 'sales',
+  },
+  {
+    title: 'Monthly revenue',
+    description: 'Compare recurring revenue performance month over month with clear trend visuals.',
+    value: '$182k',
+    metric: 'MoM +9.2%',
+    chart: [20, 26, 22, 28, 34, 38],
+    accent: 'from-slate-700 to-slate-900',
+    type: 'monthly',
+  },
+  {
+    title: 'Yearly revenue',
+    description: 'Track long-range business growth with strategic summaries built for leadership review.',
+    value: '$2.1M',
+    metric: 'YoY +21%',
+    chart: [32, 36, 40, 38, 42, 48],
+    accent: 'from-indigo-600 to-violet-600',
+    type: 'yearly',
+  },
+]
+
+const strategyItems = [
+  'Built for high-volume checkout with calm, consistent performance.',
+  'Designed for retail, hospitality, and service operators who need precision.',
+  'Backed by launch planning, training, and ongoing improvement support.',
+  'Modular integrations that scale smoothly as new locations and services are added.',
+  'Secure, real-time visibility that keeps leadership aligned across every shift.',
+]
+
+function DashboardIllustration({ type }: { type: string }) {
+  const common = 'h-24 w-full rounded-2xl bg-gradient-to-br p-3'
+
+  if (type === 'finance') {
+    return (
+      <div className={`${common} from-violet-500 to-indigo-600`}>
+        <svg viewBox="0 0 220 90" className="h-full w-full">
+          <rect x="8" y="12" width="204" height="66" rx="12" fill="rgba(255,255,255,0.16)" />
+          <rect x="24" y="28" width="64" height="12" rx="6" fill="white" fillOpacity="0.85" />
+          <rect x="24" y="48" width="100" height="10" rx="5" fill="white" fillOpacity="0.65" />
+          <path d="M156 30 L176 46 L190 35 L204 22" stroke="white" strokeWidth="4" strokeLinecap="round" fill="none" />
+        </svg>
+      </div>
+    )
+  }
+
+  if (type === 'product') {
+    return (
+      <div className={`${common} from-emerald-500 to-teal-600`}>
+        <svg viewBox="0 0 220 90" className="h-full w-full">
+          <rect x="18" y="18" width="64" height="54" rx="12" fill="rgba(255,255,255,0.18)" />
+          <rect x="92" y="18" width="108" height="54" rx="12" fill="rgba(255,255,255,0.12)" />
+          <rect x="32" y="34" width="36" height="8" rx="4" fill="white" fillOpacity="0.8" />
+          <rect x="108" y="32" width="56" height="10" rx="5" fill="white" fillOpacity="0.75" />
+          <rect x="108" y="48" width="78" height="8" rx="4" fill="white" fillOpacity="0.55" />
+        </svg>
+      </div>
+    )
+  }
+
+  if (type === 'profit') {
+    return (
+      <div className={`${common} from-amber-500 to-orange-600`}>
+        <svg viewBox="0 0 220 90" className="h-full w-full">
+          <path d="M20 60 C50 40, 70 48, 98 32 C126 16, 148 24, 176 36 C190 42, 198 44, 200 34" stroke="white" strokeWidth="4" strokeLinecap="round" fill="none" />
+          <circle cx="98" cy="32" r="6" fill="white" />
+          <circle cx="176" cy="36" r="6" fill="white" />
+        </svg>
+      </div>
+    )
+  }
+
+  if (type === 'customer') {
+    return (
+      <div className={`${common} from-sky-500 to-cyan-600`}>
+        <svg viewBox="0 0 220 90" className="h-full w-full">
+          <circle cx="64" cy="38" r="22" fill="rgba(255,255,255,0.22)" />
+          <rect x="96" y="24" width="98" height="16" rx="8" fill="white" fillOpacity="0.8" />
+          <rect x="96" y="46" width="72" height="10" rx="5" fill="white" fillOpacity="0.62" />
+          <rect x="96" y="62" width="86" height="10" rx="5" fill="white" fillOpacity="0.42" />
+        </svg>
+      </div>
+    )
+  }
+
+  if (type === 'gross') {
+    return (
+      <div className={`${common} from-fuchsia-500 to-pink-600`}>
+        <svg viewBox="0 0 220 90" className="h-full w-full">
+          <rect x="22" y="22" width="176" height="48" rx="14" fill="rgba(255,255,255,0.18)" />
+          <path d="M42 54 H84" stroke="white" strokeWidth="8" strokeLinecap="round" />
+          <path d="M118 54 H160" stroke="white" strokeWidth="8" strokeLinecap="round" />
+          <path d="M176 54 H188" stroke="white" strokeWidth="8" strokeLinecap="round" />
+        </svg>
+      </div>
+    )
+  }
+
+  if (type === 'sales') {
+    return (
+      <div className={`${common} from-rose-500 to-red-600`}>
+        <svg viewBox="0 0 220 90" className="h-full w-full">
+          <rect x="20" y="24" width="180" height="42" rx="14" fill="rgba(255,255,255,0.18)" />
+          <rect x="36" y="40" width="34" height="16" rx="8" fill="white" fillOpacity="0.85" />
+          <rect x="88" y="36" width="44" height="20" rx="10" fill="white" fillOpacity="0.7" />
+          <rect x="146" y="32" width="38" height="24" rx="10" fill="white" fillOpacity="0.55" />
+        </svg>
+      </div>
+    )
+  }
+
+  if (type === 'monthly') {
+    return (
+      <div className={`${common} from-slate-700 to-slate-900`}>
+        <svg viewBox="0 0 220 90" className="h-full w-full">
+          <path d="M24 56 L54 44 L82 52 L118 28 L152 38 L188 22" stroke="white" strokeWidth="4" strokeLinecap="round" fill="none" />
+          <circle cx="54" cy="44" r="5" fill="white" />
+          <circle cx="118" cy="28" r="5" fill="white" />
+          <circle cx="188" cy="22" r="5" fill="white" />
+        </svg>
+      </div>
+    )
+  }
+
+  return (
+    <div className={`${common} from-indigo-600 to-violet-700`}>
+      <svg viewBox="0 0 220 90" className="h-full w-full">
+        <rect x="24" y="24" width="172" height="42" rx="14" fill="rgba(255,255,255,0.16)" />
+        <rect x="40" y="38" width="36" height="10" rx="5" fill="white" fillOpacity="0.78" />
+        <rect x="92" y="38" width="74" height="10" rx="5" fill="white" fillOpacity="0.6" />
+      </svg>
+    </div>
+  )
+}
+
+export default function POS() {
+  return (
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(129,140,248,0.18),_transparent_32%),linear-gradient(180deg,_#f8fafc_0%,_#f3f4f6_100%)]">
+      <Header />
+      <main className="container py-16 lg:py-24">
+        <section className="glass-card overflow-hidden border-slate-200/80 bg-white/85 p-0">
+          <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="p-8 lg:p-12">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Point of sale systems</p>
+              <h1 className="mt-4 text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
+                A refined POS platform built for speed, visibility, and control.
+              </h1>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+                From retail counters to restaurants and fuel outlets, our systems blend refined design with operational discipline so every transaction feels effortless and every decision is better informed.
+              </p>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {features.map((item) => (
+                  <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50/80 p-4 text-sm font-medium text-slate-700 shadow-sm">
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="rounded-2xl border border-slate-200 bg-white/70 p-4">
+                    <div className="text-xl font-semibold text-slate-900">{stat.value}</div>
+                    <div className="mt-1 text-sm text-slate-500">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative min-h-[420px] overflow-hidden bg-slate-900 p-3">
+              <div className="h-full min-h-[420px] rounded-[1.5rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,_rgba(129,140,248,0.22),_transparent_25%),linear-gradient(135deg,_#0f172a_0%,_#111827_55%,_#1f2937_100%)] p-5">
+                <div className="flex h-full flex-col justify-between rounded-[1.2rem] border border-white/10 bg-white/8 p-4 backdrop-blur">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <div className="rounded-[1rem] border border-white/10 bg-white/10 p-3">
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-300">Sales velocity</div>
+                      <div className="mt-2 text-2xl font-semibold text-white">$24,890</div>
+                      <div className="mt-1 text-sm text-emerald-300">+12.4% vs prior period</div>
+                    </div>
+                    <div className="rounded-[1rem] border border-white/10 bg-white/10 p-3">
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-300">Margin yield</div>
+                      <div className="mt-2 text-2xl font-semibold text-white">68.2%</div>
+                      <div className="mt-1 text-sm text-slate-300">Premium mix performance</div>
+                    </div>
+                  </div>
+
+                  <div className="rounded-[1.2rem] border border-white/10 bg-slate-950/50 p-4">
+                    <div className="flex items-center justify-between text-sm text-slate-300">
+                      <span>Revenue overview</span>
+                      <span className="rounded-full bg-emerald-500/20 px-2 py-1 text-xs font-semibold text-emerald-300">Live</span>
+                    </div>
+                    <div className="mt-4 flex h-24 items-end gap-2">
+                      {[48, 72, 60, 92, 84, 112, 98].map((height, index) => (
+                        <div key={index} className="flex-1 rounded-t-xl bg-gradient-to-t from-indigo-500 to-cyan-400" style={{ height: `${height}px` }} />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    <div className="rounded-[1rem] border border-white/10 bg-white/10 p-3">
+                      <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Monthly</div>
+                      <div className="mt-2 text-lg font-semibold text-white">$182k</div>
+                    </div>
+                    <div className="rounded-[1rem] border border-white/10 bg-white/10 p-3">
+                      <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Yearly</div>
+                      <div className="mt-2 text-lg font-semibold text-white">$2.1M</div>
+                    </div>
+                    <div className="rounded-[1rem] border border-white/10 bg-white/10 p-3">
+                      <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Customers</div>
+                      <div className="mt-2 text-lg font-semibold text-white">1.4k</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-x-6 bottom-6 rounded-[1.25rem] border border-white/20 bg-slate-950/70 p-5 text-white backdrop-blur">
+                <div className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300">Built for scale</div>
+                <div className="mt-2 text-lg font-medium">Flexible workflows for retail, hospitality, and service-led businesses.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
+          <div className="glass-card border-slate-200/80 bg-white/80 p-8 lg:p-10">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Dashboard experience</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900">A calm, premium control layer for daily operations.</h2>
+            <p className="mt-4 text-base leading-7 text-slate-600">
+              A refined operational experience that blends elegant visibility with clear execution, so teams stay confident and every shift feels composed.
+            </p>
+            <div className="mt-6 space-y-5">
+              {dashboardModules.map((card) => (
+                <div key={card.title} className="min-h-[220px] rounded-[2rem] border border-slate-200/80 bg-white/90 p-6 shadow-[0_20px_50px_-20px_rgba(15,23,42,0.12)]">
+                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start">
+                    <div className="min-w-0">
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.35em] text-indigo-600">{card.title}</div>
+                      <div className="mt-4 text-2xl font-semibold text-slate-900">{card.title}</div>
+                      <p className="mt-4 text-sm leading-6 text-slate-600">{card.description}</p>
+                    </div>
+                    <div className="w-full lg:max-w-[220px] lg:justify-self-end">
+                      <DashboardIllustration type={card.type} />
+                    </div>
+                  </div>
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                    <div className="rounded-[1.5rem] bg-slate-50 p-4">
+                      <div className="text-[10px] uppercase tracking-[0.35em] text-slate-500">Figure</div>
+                      <div className="mt-2 text-xl font-semibold text-slate-900">{card.value}</div>
+                    </div>
+                    <div className="rounded-[1.5rem] bg-slate-50 p-4">
+                      <div className="text-[10px] uppercase tracking-[0.35em] text-slate-500">Signal</div>
+                      <div className="mt-2 text-xl font-semibold text-slate-900">{card.metric}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="h-full rounded-[2rem] border border-slate-200 bg-slate-900 p-6 text-white shadow-[0_25px_70px_-25px_rgba(15,23,42,0.4)]">
+            <div className="h-full rounded-[1.5rem] border border-white/10 bg-white/10 p-5 backdrop-blur flex flex-col justify-between">
+              <div>
+                <div className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300">Operational strategy</div>
+                <div className="mt-4 space-y-3">
+                  {strategyItems.map((item) => (
+                    <div key={item} className="rounded-2xl bg-white/10 p-4 text-sm leading-6 text-slate-200">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-6 rounded-[1.75rem] border border-white/10 bg-white/5 p-4 text-sm leading-6 text-slate-200">
+                <div className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Built for every environment</div>
+                <div className="mt-3 space-y-2">
+                  <p>Modular operations that scale across stores, kitchens, and service counters.</p>
+                  <p>Secure workflows and real-time insights keep staff aligned and leadership informed.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white/95 p-8 shadow-[0_25px_70px_-25px_rgba(15,23,42,0.16)] lg:p-10">
+          <div className="rounded-[2rem] bg-slate-950 p-6 shadow-xl">
+            <div className="flex flex-col gap-6">
+              <div className="h-[460px] rounded-[1.75rem] border border-white/10 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-800 p-6">
+                <div className="flex items-center justify-between text-sm uppercase tracking-[0.3em] text-slate-400">
+                  <div>Command dashboard</div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs text-slate-100">
+                    Live
+                  </div>
+                </div>
+                <div className="mt-6 rounded-[1.5rem] bg-slate-900/80 p-4">
+                  <div className="flex items-center justify-between gap-4 text-white">
+                    <div>
+                      <div className="text-xs uppercase tracking-[0.3em] text-slate-400">Today sales</div>
+                      <div className="mt-2 text-3xl font-semibold">$24,890</div>
+                    </div>
+                    <div className="rounded-[1.5rem] bg-slate-950/80 px-4 py-3 text-right">
+                      <div className="text-xs uppercase tracking-[0.3em] text-slate-400">Growth</div>
+                      <div className="mt-2 text-xl font-semibold text-emerald-300">+12.4%</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                  {[
+                    ['Open deals', '1,047'],
+                    ['Won deals', '70'],
+                    ['Lost deals', '94'],
+                  ].map(([label, value]) => (
+                    <div key={label} className="rounded-[1.5rem] bg-slate-900/80 p-4 text-sm text-slate-300">
+                      <div className="text-xs uppercase tracking-[0.3em] text-slate-500">{label}</div>
+                      <div className="mt-3 text-xl font-semibold text-white">{value}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 h-[240px] overflow-hidden rounded-[1.5rem] bg-slate-900/80 p-4">
+                  <div className="h-full rounded-[1.5rem] border border-white/10 bg-gradient-to-b from-slate-950 to-slate-900 p-4">
+                    <div className="grid h-full grid-cols-[1.1fr_0.9fr] gap-4">
+                      <div className="space-y-4">
+                        <div className="h-2 rounded-full bg-slate-800" />
+                        <div className="h-2 rounded-full bg-slate-800/80" />
+                        <div className="h-2 rounded-full bg-slate-800" />
+                        <div className="mt-4 grid grid-cols-4 gap-3">
+                          {[64, 78, 94, 84].map((width, index) => (
+                            <div key={index} className="h-28 rounded-[1rem] bg-gradient-to-t from-sky-400 to-indigo-500" style={{ width: `${width}%` }} />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="rounded-[1.5rem] bg-slate-950/80 p-4">
+                        <div className="text-xs uppercase tracking-[0.3em] text-slate-500">Weekly pulse</div>
+                        <div className="mt-4 flex flex-col gap-3 text-white">
+                          <div className="rounded-2xl bg-slate-900/90 p-3">
+                            <div className="text-sm text-slate-400">Revenue</div>
+                            <div className="mt-2 text-xl font-semibold">$182k</div>
+                          </div>
+                          <div className="rounded-2xl bg-slate-900/90 p-3">
+                            <div className="text-sm text-slate-400">Customers</div>
+                            <div className="mt-2 text-xl font-semibold">1.4k</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-[1.75rem] border border-white/10 bg-slate-900/80 p-6 text-slate-300">
+                <div className="text-sm uppercase tracking-[0.3em] text-slate-400">Executive dashboard</div>
+                <div className="mt-3 text-lg font-semibold text-white">A premium command surface for revenue, pipeline, and momentum.</div>
+                <div className="mt-3 text-sm leading-6 text-slate-300">
+                  One elevated view with clean signals, trend clarity, and the insight teams trust every day.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="glass-card border-slate-200/80 bg-white/80 p-8 lg:p-10">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Deployment footprint</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900">Trusted across business models that need dependable daily operations.</h2>
+            <p className="mt-4 text-base leading-7 text-slate-600">
+              The experience is designed to feel calm and confident for staff, while giving leadership complete clarity over performance.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {clients.map((client) => (
+              <div key={client} className="rounded-[1.5rem] border border-slate-200 bg-white/80 p-5 text-sm font-semibold text-slate-700 shadow-sm">
+                {client}
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  )
+}

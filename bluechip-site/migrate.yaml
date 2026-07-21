@@ -1,0 +1,4 @@
+---
+migration-folder: migrations
+schema: public
+

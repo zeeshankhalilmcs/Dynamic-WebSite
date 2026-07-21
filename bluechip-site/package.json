@@ -1,0 +1,37 @@
+{
+  "name": "bluechip-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "migrate": "node-pg-migrate up",
+    "migrate:down": "node-pg-migrate down"
+  },
+  "dependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "axios": "^1.4.0",
+    "csv-stringify": "^6.8.1",
+    "geoip-lite": "^2.0.3",
+    "ioredis": "^5.11.1",
+    "jsonwebtoken": "^9.0.3",
+    "next": "^13.4.12",
+    "pg": "^8.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.0.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.1",
+    "@types/pg": "^8.20.0",
+    "@types/react": "19.2.17",
+    "autoprefixer": "^10.4.14",
+    "node-pg-migrate": "^9.0.0",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.4.7",
+    "typescript": "^5.3.2"
+  }
+}
