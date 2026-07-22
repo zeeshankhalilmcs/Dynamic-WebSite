@@ -489,6 +489,14 @@ export default function POS() {
             </div>
           </div>
         </section>
+
+        <section className="border-t border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-slate-100/50 py-16 lg:py-20">
+          <div className="container flex flex-col items-center text-center">
+            <h2 className="text-2xl font-semibold text-slate-900 sm:text-3xl">Ready to transform your retail operations?</h2>
+            <p className="mt-3 max-w-2xl text-lg text-slate-600">Let's discuss how our POS solution can streamline your business, boost efficiency, and drive growth.</p>
+            <a href="/contact" className="mt-8 rounded-full bg-amber-500 px-6 py-3 font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-amber-600">Book a Consultation</a>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

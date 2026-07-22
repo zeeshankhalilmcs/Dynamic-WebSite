@@ -1,7 +1,7 @@
 export default function Hero(){
   return (
     <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.35),_transparent_40%),linear-gradient(135deg,_#0f172a_0%,_#1e293b_55%,_#312e81_100%)] py-20 text-white lg:py-28">
-      <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_0%,rgba(255,255,255,0.08)_45%,transparent_100%)] opacity-50" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,transparent_0%,rgba(255,255,255,0.08)_45%,transparent_100%)] opacity-50" />
       <div className="container grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="max-w-2xl">
           <div className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium text-slate-200">
@@ -14,8 +14,8 @@ export default function Hero(){
             We design resilient POS, ERP, and infrastructure systems that help teams move faster, serve customers better, and scale confidently.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="/contact" className="rounded-full bg-white px-5 py-3 font-semibold text-slate-900 transition duration-300 hover:-translate-y-0.5 hover:bg-slate-100">Request a consultation</a>
-            <a href="/pos" className="rounded-full border border-white/25 px-5 py-3 font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/10">Explore our solutions</a>
+            <a href="/contact" className="rounded-full bg-white px-5 py-3 font-semibold text-slate-900 transition duration-300 hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-lg cursor-pointer">Book a Consultation</a>
+            <a href="/pos" className="rounded-full border border-white/25 px-5 py-3 font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:shadow-lg cursor-pointer">Explore Our Solutions</a>
           </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-3">

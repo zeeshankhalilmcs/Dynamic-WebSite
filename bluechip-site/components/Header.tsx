@@ -19,7 +19,7 @@ export default function Header() {
         </nav>
 
         <Link href="/contact" className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700">
-          Book a consult
+          Book a Consultation
         </Link>
       </div>
     </header>

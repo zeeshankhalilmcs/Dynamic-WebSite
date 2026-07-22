@@ -4,10 +4,14 @@ import axios from 'axios'
 
 export default function AdminLoginPage() {
   const router = useRouter()
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [token, setToken] = useState('')
   const [error, setError] = useState('')
   const [captchaEnabled, setCaptchaEnabled] = useState(false)
   const [captchaConfirmed, setCaptchaConfirmed] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const fallbackToken = 'bluch$p-@dm$n-tok$n'
 
   useEffect(() => {
     const storedToken = localStorage.getItem('admin_token')
@@ -23,26 +27,30 @@ export default function AdminLoginPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!token.trim()) {
-      setError('Please enter the admin token.')
-      return
-    }
+    setError('')
+    setLoading(true)
 
     if (captchaEnabled && !captchaConfirmed) {
       setError('Please confirm you are not a robot.')
+      setLoading(false)
       return
     }
 
     try {
+      const payload = username.trim() && password.trim()
+        ? { username, password }
+        : { token }
+
       const response = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token }),
+        body: JSON.stringify(payload),
       })
 
       const data = await response.json()
       if (!response.ok) {
         setError(data.error || 'Login failed')
+        setLoading(false)
         return
       }
 
@@ -51,33 +59,64 @@ export default function AdminLoginPage() {
       router.push('/admin')
     } catch {
       setError('Unable to sign in right now.')
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-xl">
-        <h1 className="text-2xl font-semibold">Admin Sign In</h1>
-        <p className="mt-2 text-sm text-slate-600">Use the configured admin token to access the dashboard.</p>
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4 py-8">
+      <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900/90 p-8 shadow-2xl shadow-slate-950/40">
+        <div className="mb-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-400">Blue Chip Solutions</p>
+          <h1 className="mt-2 text-2xl font-semibold text-white">Secure sign in</h1>
+          <p className="mt-2 text-sm text-slate-400">Use your seeded super admin credentials or the existing admin token.</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="mb-2 block text-sm font-medium">Admin token</label>
+            <label className="mb-2 block text-sm font-medium text-slate-300">User Name</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-white outline-none ring-0"
+              placeholder="Enter Email"
+            />
+          </div>
+          <div>
+            <label className="mb-2 block text-sm font-medium text-slate-300">Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-white outline-none ring-0"
+              placeholder="Enter password"
+            />
+          </div>
+          <div>
+            <label className="mb-2 block text-sm font-medium text-slate-300">Admin token</label>
+            <div className="mb-2 rounded-lg border border-slate-700 bg-slate-800/70 px-3 py-2 text-xs text-slate-400">
+              Fallback token: <span className="font-semibold text-amber-300">{fallbackToken}</span>
+            </div>
             <input
               type="password"
               value={token}
               onChange={(e) => setToken(e.target.value)}
-              className="w-full rounded border px-3 py-2"
-              placeholder="Enter token"
+              className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-white outline-none ring-0"
+              placeholder="Enter fallback token"
             />
           </div>
           {captchaEnabled ? (
-            <label className="flex items-center gap-2 text-sm text-slate-600">
+            <label className="flex items-center gap-2 text-sm text-slate-400">
               <input type="checkbox" checked={captchaConfirmed} onChange={(e) => setCaptchaConfirmed(e.target.checked)} />
               I confirm I am not a robot.
             </label>
           ) : null}
-          {error ? <div className="rounded bg-rose-100 px-3 py-2 text-sm text-rose-700">{error}</div> : null}
-          <button className="w-full rounded bg-indigo-600 px-4 py-2 font-medium text-white">Sign in</button>
+          {error ? <div className="rounded-xl bg-rose-500/15 px-3 py-2 text-sm text-rose-300">{error}</div> : null}
+          <button disabled={loading} className="w-full rounded-xl bg-amber-500 px-4 py-2 font-medium text-slate-950 disabled:opacity-60">
+            {loading ? 'Signing in...' : 'Sign in'}
+          </button>
         </form>
       </div>
     </div>

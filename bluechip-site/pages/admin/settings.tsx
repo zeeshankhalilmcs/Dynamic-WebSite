@@ -7,6 +7,7 @@ export default function AdminSettingsPage() {
     recaptcha: { enabled: false, siteKey: '', secretKey: '' },
     verification: { enabled: false, otpEnabled: false, otpTtlMinutes: 10, otpMaxAttempts: 5 },
     chatbot: { enabled: false, provider: '', apiKey: '', endpoint: '', greeting: '' },
+    whatsapp: { enabled: false, provider: 'twilio', apiKey: '', phoneNumber: '', webhookUrl: '', greeting: '' },
   })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -37,6 +38,7 @@ export default function AdminSettingsPage() {
               recaptcha: { enabled: false, siteKey: '', secretKey: '', ...(data.recaptcha || {}) },
               verification: { enabled: false, otpEnabled: false, otpTtlMinutes: 10, otpMaxAttempts: 5, ...(data.verification || {}) },
               chatbot: { enabled: false, provider: '', apiKey: '', endpoint: '', greeting: '', ...(data.chatbot || {}) },
+              whatsapp: { enabled: false, provider: 'twilio', apiKey: '', phoneNumber: '', webhookUrl: '', greeting: '', ...(data.whatsapp || {}) },
             })
             setLoading(false)
           })
@@ -154,6 +156,23 @@ export default function AdminSettingsPage() {
                 <input type="password" value={values.chatbot.apiKey || ''} onChange={(e) => updateSection('chatbot', 'apiKey', e.target.value)} placeholder="API key" className="rounded border px-3 py-2" />
                 <input value={values.chatbot.endpoint || ''} onChange={(e) => updateSection('chatbot', 'endpoint', e.target.value)} placeholder="Endpoint URL" className="rounded border px-3 py-2" />
                 <input value={values.chatbot.greeting || ''} onChange={(e) => updateSection('chatbot', 'greeting', e.target.value)} placeholder="Greeting message" className="rounded border px-3 py-2" />
+              </div>
+            </section>
+
+            <section className="rounded-3xl bg-white p-6 shadow">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold">WhatsApp integration</h2>
+                <label className="flex items-center gap-2 text-sm">
+                  <input type="checkbox" checked={values.whatsapp.enabled} onChange={(e) => updateSection('whatsapp', 'enabled', e.target.checked)} />
+                  Enabled
+                </label>
+              </div>
+              <div className="mt-4 grid gap-4 md:grid-cols-2">
+                <input value={values.whatsapp.provider || ''} onChange={(e) => updateSection('whatsapp', 'provider', e.target.value)} placeholder="Provider" className="rounded border px-3 py-2" />
+                <input type="password" value={values.whatsapp.apiKey || ''} onChange={(e) => updateSection('whatsapp', 'apiKey', e.target.value)} placeholder="API key or token" className="rounded border px-3 py-2" />
+                <input value={values.whatsapp.phoneNumber || ''} onChange={(e) => updateSection('whatsapp', 'phoneNumber', e.target.value)} placeholder="Sender phone number" className="rounded border px-3 py-2" />
+                <input value={values.whatsapp.webhookUrl || ''} onChange={(e) => updateSection('whatsapp', 'webhookUrl', e.target.value)} placeholder="Webhook URL" className="rounded border px-3 py-2" />
+                <input value={values.whatsapp.greeting || ''} onChange={(e) => updateSection('whatsapp', 'greeting', e.target.value)} placeholder="Greeting message" className="rounded border px-3 py-2 md:col-span-2" />
               </div>
             </section>
 
