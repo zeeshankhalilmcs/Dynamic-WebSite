@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export default function Footer(){
   return (
     <footer className="mt-16 border-t border-slate-200 bg-slate-50/80 py-10">
@@ -12,10 +10,10 @@ export default function Footer(){
         </div>
         <div>
           <div className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Solutions</div>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li><Link href="/pos" className="text-slate-600 transition hover:text-slate-900 font-medium">POS System</Link></li>
-            <li><Link href="/restaurant" className="text-slate-600 transition hover:text-slate-900 font-medium">Restaurant Solution</Link></li>
-            <li><a href="#" className="text-slate-600 transition hover:text-slate-900 font-medium">Infrastructure & Security</a></li>
+          <ul className="mt-3 space-y-2 text-sm text-slate-600">
+            <li>ERP & workflow automation</li>
+            <li>Retail, restaurant & pharmacy POS</li>
+            <li>Infrastructure & security</li>
           </ul>
         </div>
         <div>
@@ -27,11 +25,13 @@ export default function Footer(){
           </ul>
         </div>
       </div>
-      <div className="container mt-8 flex flex-col items-center justify-between gap-3 border-t border-slate-200 pt-6 text-sm text-slate-500 md:flex-row">
+      <div className="container mt-8 border-t border-slate-200 pt-6 text-center text-sm text-slate-500">
+        <div className="mb-3 md:mb-0">
+          <a href="/privacy" className="font-medium text-slate-600 transition hover:text-slate-900">
+            Privacy Policy
+          </a>
+        </div>
         <div>© {new Date().getFullYear()} Bluechip Technologies — All rights reserved.</div>
-        <a href="/privacy" className="font-medium text-slate-600 transition hover:text-slate-900">
-          Privacy Policy
-        </a>
       </div>
     </footer>
   )
