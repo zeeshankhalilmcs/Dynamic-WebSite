@@ -11,7 +11,6 @@ export default function AdminLoginPage() {
   const [captchaEnabled, setCaptchaEnabled] = useState(false)
   const [captchaConfirmed, setCaptchaConfirmed] = useState(false)
   const [loading, setLoading] = useState(false)
-  const fallbackToken = 'bluch$p-@dm$n-tok$n'
 
   useEffect(() => {
     const storedToken = localStorage.getItem('admin_token')
@@ -96,15 +95,12 @@ export default function AdminLoginPage() {
           </div>
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-300">Admin token</label>
-            <div className="mb-2 rounded-lg border border-slate-700 bg-slate-800/70 px-3 py-2 text-xs text-slate-400">
-              Fallback token: <span className="font-semibold text-amber-300">{fallbackToken}</span>
-            </div>
             <input
               type="password"
               value={token}
               onChange={(e) => setToken(e.target.value)}
               className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-white outline-none ring-0"
-              placeholder="Enter fallback token"
+              placeholder="Enter admin token if you have one"
             />
           </div>
           {captchaEnabled ? (

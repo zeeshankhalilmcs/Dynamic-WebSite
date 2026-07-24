@@ -3,21 +3,6 @@ import type { AdminUser, IAdminUserRepository } from '../AdminUserRepository'
 
 export class AdminUserRepositoryPg implements IAdminUserRepository {
   async create(user: Omit<AdminUser, 'id' | 'createdAt' | 'lastLoginAt'>): Promise<AdminUser> {
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS admin_users (
-        id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-        full_name text NOT NULL,
-        email text NOT NULL UNIQUE,
-        username text NOT NULL UNIQUE,
-        password_hash text NOT NULL,
-        password_salt text NOT NULL,
-        role text NOT NULL DEFAULT 'admin',
-        is_active boolean NOT NULL DEFAULT true,
-        created_at timestamptz DEFAULT now(),
-        last_login_at timestamptz
-      )
-    `)
-
     const res = await pool.query(
       `INSERT INTO admin_users (full_name, email, username, password_hash, password_salt, role, is_active)
        VALUES ($1, $2, $3, $4, $5, $6, $7)
@@ -29,21 +14,6 @@ export class AdminUserRepositoryPg implements IAdminUserRepository {
   }
 
   async findByEmailOrUsername(login: string): Promise<AdminUser | null> {
-    await pool.query(`
-      CREATE TABLE IF NOT EXISTS admin_users (
-        id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-        full_name text NOT NULL,
-        email text NOT NULL UNIQUE,
-        username text NOT NULL UNIQUE,
-        password_hash text NOT NULL,
-        password_salt text NOT NULL,
-        role text NOT NULL DEFAULT 'admin',
-        is_active boolean NOT NULL DEFAULT true,
-        created_at timestamptz DEFAULT now(),
-        last_login_at timestamptz
-      )
-    `)
-
     const res = await pool.query(
       `SELECT id, full_name, email, username, password_hash, password_salt, role, is_active, created_at, last_login_at
        FROM admin_users

@@ -7,6 +7,11 @@ import { getGeoLocation } from '../../server/services/GeoService'
 import { AdminSettingsService } from '../../server/services/AdminSettingsService'
 import { VerificationService } from '../../server/services/VerificationService'
 
+const sessionCooldownMs = 30 * 1000
+const maxSessionSubmissions = 3
+const sessionBlockMs = 24 * 60 * 60 * 1000
+const sessionMap = new Map<string, { count: number; lastSubmit: number; blockedUntil?: number }>()
+
 const schema = z.object({
   firstName: z.string().min(2),
   lastName: z.string().min(2),
@@ -45,6 +50,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const botSignals = evaluateBotSignals(req, body as Record<string, unknown>)
     if(botSignals.isBot){
       return res.status(403).json({ success: false, error: 'Request rejected', reason: botSignals.reason })
+    }
+
+    const sessionId = req.cookies?.contact_session_id || null
+    if (sessionId) {
+      const now = Date.now()
+      const sessionInfo = sessionMap.get(sessionId)
+      if (sessionInfo) {
+        if (sessionInfo.blockedUntil && now < sessionInfo.blockedUntil) {
+          return res.status(429).json({ success: false, error: 'Please try again later.', reason: 'session-blocked' })
+        }
+        if (sessionInfo.count >= maxSessionSubmissions) {
+          sessionMap.set(sessionId, { ...sessionInfo, blockedUntil: now + sessionBlockMs })
+          return res.status(429).json({ success: false, error: 'Please try again later.', reason: 'session-blocked' })
+        }
+        if (now < sessionInfo.lastSubmit + sessionCooldownMs) {
+          return res.status(429).json({ success: false, error: 'Please wait a moment and try again.', reason: 'session-too-frequent' })
+        }
+        sessionMap.set(sessionId, { count: sessionInfo.count + 1, lastSubmit: now })
+      } else {
+        sessionMap.set(sessionId, { count: 1, lastSubmit: now })
+      }
     }
 
     const settingsService = new AdminSettingsService()

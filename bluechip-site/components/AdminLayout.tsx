@@ -25,6 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <nav className="flex items-center gap-4">
             <Link href="/admin" className="text-slate-700 hover:text-slate-900">Dashboard</Link>
             <Link href="/admin/inquiries" className="text-slate-700 hover:text-slate-900">Inquiries</Link>
+            <Link href="/admin/blog" className="text-slate-700 hover:text-slate-900">Blog</Link>
             <Link href="/admin/settings" className="text-slate-700 hover:text-slate-900">Settings</Link>
             <button onClick={handleLogout} className="rounded border px-3 py-1 text-sm text-slate-700">Logout</button>
           </nav>

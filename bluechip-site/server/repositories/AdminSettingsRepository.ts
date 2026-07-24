@@ -26,6 +26,32 @@ export type AdminSettings = {
     endpoint?: string
     greeting?: string
   }
+  admin?: {
+    fallbackToken?: string
+  }
+  pricing?: {
+    heroTitle?: string
+    heroSubtitle?: string
+    heroCtaLabel?: string
+    heroCtaHref?: string
+    comparisonTitle?: string
+    faqTitle?: string
+    plans?: Array<{
+      id?: string
+      name?: string
+      price?: string
+      period?: string
+      description?: string
+      ctaLabel?: string
+      ctaHref?: string
+      featured?: boolean
+      badge?: string
+      features?: string[]
+      highlights?: string[]
+    }>
+    comparisonFeatures?: Array<{ name?: string; values?: string[] }>
+    faqs?: Array<{ question?: string; answer?: string }>
+  }
 }
 
 export interface IAdminSettingsRepository {

@@ -17,6 +17,8 @@ const BOT_USER_AGENTS = [
   'crawler',
 ]
 
+const MIN_SUBMIT_DELAY_MS = 1200
+
 export function evaluateBotSignals(req: NextApiRequest, body: Record<string, unknown>): BotSignal {
   const userAgent = String(req.headers['user-agent'] || '').toLowerCase()
   const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown')
@@ -26,7 +28,7 @@ export function evaluateBotSignals(req: NextApiRequest, body: Record<string, unk
 
   const suspiciousUserAgent = BOT_USER_AGENTS.some((token) => userAgent.includes(token))
   const hasHoneypot = honeypot.length > 0
-  const tooFast = submissionTime > 0 && now - submissionTime < 2500
+  const tooFast = submissionTime > 0 && now - submissionTime < MIN_SUBMIT_DELAY_MS
 
   if (suspiciousUserAgent || hasHoneypot || tooFast) {
     return {

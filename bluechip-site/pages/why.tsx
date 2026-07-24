@@ -1,5 +1,6 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import BookConsultationCard from '../components/BookConsultationCard'
 
 const reasons = [
   '19+ years of hands-on implementation experience',
@@ -136,6 +137,8 @@ export default function Why() {
             </div>
           </div>
         </section>
+
+        <BookConsultationCard />
       </main>
       <Footer />
     </div>

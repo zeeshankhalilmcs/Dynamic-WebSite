@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" role="img" aria-label="Canal Country Club logo">
+  <rect width="300" height="120" rx="18" fill="#0f766e" />
+  <circle cx="72" cy="60" r="28" fill="#5eead4" />
+  <text x="72" y="68" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#042f2e">C</text>
+  <text x="118" y="50" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff">CANAL</text>
+  <text x="118" y="80" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="#ccfbf1">COUNTRY CLUB</text>
+</svg>

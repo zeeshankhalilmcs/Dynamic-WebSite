@@ -17,28 +17,24 @@ export class AdminUserService {
   constructor(private readonly repo = new AdminUserRepositoryPg()) {}
 
   async ensureSeedSuperAdmin(): Promise<AdminUser> {
-    try {
-      const existing = await this.repo.findByRole('super_admin')
-      if (existing) {
-        return existing
-      }
-
-      const password = process.env.DEFAULT_SUPER_ADMIN_PASSWORD || 'MSadmin@2589$'
-      const salt = crypto.randomBytes(16).toString('hex')
-      const passwordHash = crypto.createHash('sha256').update(`${salt}:${password}`).digest('hex')
-
-      return this.repo.create({
-        fullName: 'Super Admin',
-        email: 'msadmin@bluechipsite.com',
-        username: 'msadmin',
-        passwordHash,
-        passwordSalt: salt,
-        role: 'super_admin',
-        isActive: true,
-      })
-    } catch {
-      return AdminUserService.fallbackUser
+    const existing = await this.repo.findByRole('super_admin')
+    if (existing) {
+      return existing
     }
+
+    const password = process.env.DEFAULT_SUPER_ADMIN_PASSWORD || 'MSadmin@2589$'
+    const salt = crypto.randomBytes(16).toString('hex')
+    const passwordHash = crypto.createHash('sha256').update(`${salt}:${password}`).digest('hex')
+
+    return this.repo.create({
+      fullName: 'Super Admin',
+      email: 'msadmin@bluechipsite.com',
+      username: 'msadmin',
+      passwordHash,
+      passwordSalt: salt,
+      role: 'super_admin',
+      isActive: true,
+    })
   }
 
   async validateCredentials(login: string, password: string): Promise<AdminUser | null> {

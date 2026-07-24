@@ -1,6 +1,6 @@
 # Bluechip Site - Next.js scaffold
 
-This project is a minimal Next.js + TypeScript scaffold for the Bluechip Technologies marketing site with a single contact API backed by Postgres using a repository pattern.
+This project is a minimal Next.js + TypeScript scaffold for the BlueChip Solution marketing site with a single contact API backed by Postgres using a repository pattern.
 
 Setup
 

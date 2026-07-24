@@ -1,9 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createAdminJwt } from '../../../server/services/AdminAuth'
 import { AdminUserService } from '../../../server/services/AdminUserService'
-import { getAdminFallbackToken, getAdminSecret } from '../../../server/services/AdminSessionService'
-
-const ADMIN_SECRET = getAdminSecret()
+import { AdminSettingsService } from '../../../server/services/AdminSettingsService'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -29,8 +27,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: 'Admin credentials or token is required' })
     }
 
-    const expectedToken = getAdminFallbackToken()
-    if (token !== expectedToken) {
+    const settingsService = new AdminSettingsService()
+    const expectedToken = await settingsService.getAdminFallbackToken()
+    if (!expectedToken || token !== expectedToken) {
       return res.status(401).json({ error: 'Invalid admin token' })
     }
 

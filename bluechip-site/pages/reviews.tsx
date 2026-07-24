@@ -1,5 +1,6 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import BookConsultationCard from '../components/BookConsultationCard'
 
 const testimonials = [
   {
@@ -74,6 +75,8 @@ export default function Reviews() {
             </div>
           ))}
         </div>
+
+        <BookConsultationCard />
       </main>
       <Footer />
     </div>

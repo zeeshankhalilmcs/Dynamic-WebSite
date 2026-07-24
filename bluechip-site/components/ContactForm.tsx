@@ -10,12 +10,12 @@ type FormData = {
   inquiryType: string
   message?: string
   website?: string
-  submittedAt?: number
   otp?: string
+  submittedAt?: string
 }
 
 export default function ContactForm(){
-  const { register, handleSubmit, getValues, formState: { isSubmitting } } = useForm<FormData>({ defaultValues: { inquiryType: 'General', submittedAt: Date.now() } })
+  const { register, handleSubmit, getValues, formState: { isSubmitting } } = useForm<FormData>({ defaultValues: { inquiryType: 'General' } })
   const [success, setSuccess] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [verificationEnabled, setVerificationEnabled] = useState(false)
@@ -30,6 +30,18 @@ export default function ContactForm(){
       setVerificationEnabled(enabled)
       setOtpEnabled(otp)
     })
+
+    const cookieName = 'contact_session_id'
+    const cookies = document.cookie.split('; ').reduce<Record<string, string>>((acc, cookie) => {
+      const [name, value] = cookie.split('=')
+      if (name && value) acc[name] = value
+      return acc
+    }, {})
+
+    if (!cookies[cookieName]) {
+      const sessionId = `sess_${Math.random().toString(36).slice(2)}_${Date.now()}`
+      document.cookie = `${cookieName}=${sessionId}; path=/; max-age=${60 * 60 * 24 * 30}; samesite=lax`
+    }
   }, [])
 
   async function requestOtp() {
@@ -57,11 +69,12 @@ export default function ContactForm(){
         }
       }
 
-      const payload = { ...data, submittedAt: Date.now() }
+      const payload = { ...data }
       await axios.post('/api/contact', payload)
       setSuccess('Thank you — we received your inquiry.')
     }catch(err:any){
-      setError(err?.response?.data?.error || 'Submission failed. Please try again later.')
+      const apiError = err?.response?.data
+      setError(apiError?.reason ? `${apiError.error || 'Submission failed.'} (${apiError.reason})` : apiError?.error || 'Submission failed. Please try again later.')
     }
   }
 
@@ -105,11 +118,11 @@ export default function ContactForm(){
           <input {...register('otp', { required: verificationEnabled })} className="w-full border rounded px-3 py-2" />
         </div>
       ) : null}
-      <input type="hidden" {...register('submittedAt')} />
       <div className="hidden">
         <label className="block font-medium">Website</label>
         <input {...register('website')} className="w-full border rounded px-3 py-2" tabIndex={-1} autoComplete="off" />
       </div>
+      <input type="hidden" value={Date.now()} {...register('submittedAt')} />
       {error ? <div className="p-3 bg-rose-100 text-rose-800 rounded">{error}</div> : null}
       <div className="flex gap-3">
         {verificationEnabled && otpEnabled ? <button type="button" onClick={requestOtp} disabled={isSubmitting} className="px-4 py-2 rounded bg-slate-700 text-white">Send code</button> : null}
