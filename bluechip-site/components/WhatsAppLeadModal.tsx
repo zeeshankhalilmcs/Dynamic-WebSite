@@ -2,19 +2,25 @@ import { useState } from 'react'
 import type { FormEvent } from 'react'
 import axios from 'axios'
 
+type BillingMode = 'monthly' | 'yearly'
+
 type Props = {
   isOpen: boolean
   onClose: () => void
+  planName?: string
+  billingMode?: BillingMode
 }
 
 const phoneNumber = '923087607119'
 
-function buildWhatsappUrl(name: string, phone: string) {
-  const message = `Hi BlueChip Solution, this is ${name}. I’d like to continue on WhatsApp.`
+function buildWhatsappUrl(name: string, phone: string, planName?: string, billingMode?: BillingMode) {
+  const billingLabel = billingMode === 'yearly' ? 'Yearly' : 'Monthly'
+  const planText = planName ? `the ${planName} ${billingLabel} plan` : 'your plan'
+  const message = `Hi BlueChip Solution, this is ${name}. I'm interested in ${planText} to sign up. Can you help me out with onboarding? Thanks.\n\nRegards,\n${name}`
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
 }
 
-export default function WhatsAppLeadModal({ isOpen, onClose }: Props) {
+export default function WhatsAppLeadModal({ isOpen, onClose, planName, billingMode }: Props) {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [error, setError] = useState('')
@@ -35,7 +41,7 @@ export default function WhatsAppLeadModal({ isOpen, onClose }: Props) {
         setSuccess('Thank you! Your WhatsApp lead has been saved. We will follow up shortly.')
         setName('')
         setPhone('')
-        window.open(buildWhatsappUrl(name, phone), '_blank', 'noreferrer')
+        window.open(buildWhatsappUrl(name, phone, planName, billingMode), '_blank', 'noreferrer')
       } else {
         setError(response.data?.error || 'Unable to save lead.')
       }
@@ -58,6 +64,11 @@ export default function WhatsAppLeadModal({ isOpen, onClose }: Props) {
         </div>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          {planName ? (
+            <div className="rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-700">
+              Selected plan: <span className="font-semibold text-slate-900">{planName}</span> • <span className="font-semibold text-slate-900">{billingMode === 'yearly' ? 'Yearly' : 'Monthly'}</span>
+            </div>
+          ) : null}
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Name</label>
             <input

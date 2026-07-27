@@ -12,6 +12,8 @@ export type PricingPlan = {
   highlights?: string[]
   details?: string[]
   detailTitle?: string
+  monthlyPrice?: number
+  yearlyPrice?: number
 }
 
 export type PricingFaq = {
@@ -46,7 +48,9 @@ export const defaultPricingPageContent: PricingPageContent = {
       ctaLabel: 'Get started',
       ctaHref: '/contact',
       features: ['Core workflow setup', 'Standard support', 'Operational reporting'],
-      highlights: ['Best for early-stage growth'],
+      highlights: ['Ideal for new operations'],
+      monthlyPrice: 9450,
+      yearlyPrice: 90720,
       detailTitle: 'What you get',
       details: ['One-time onboarding guidance', 'Essential reporting and workflow visibility', 'Straightforward support for growing teams'],
     },
@@ -61,7 +65,9 @@ export const defaultPricingPageContent: PricingPageContent = {
       featured: true,
       badge: 'Most popular',
       features: ['Everything in LaunchPad', 'AI virtual assistance', 'Branch extensibility'],
-      highlights: ['Ideal for scaling teams'],
+      highlights: ['Designed for growth'],
+      monthlyPrice: 19450,
+      yearlyPrice: 186720,
       detailTitle: 'Built for momentum',
       details: ['Automated follow-up and inbox support', 'Virtual assistance for common requests', 'Flexible branch expansion and guidance'],
     },
@@ -74,7 +80,9 @@ export const defaultPricingPageContent: PricingPageContent = {
       ctaLabel: 'Request a demo',
       ctaHref: '/contact',
       features: ['Everything in Momentum', 'Advanced AI assistance', 'Premium onboarding support', 'Expanded reporting', 'Priority implementation guidance'],
-      highlights: ['Built for high-performance operations'],
+      highlights: ['Best for multi-branch growth'],
+      monthlyPrice: 29450,
+      yearlyPrice: 282720,
       detailTitle: 'Why teams upgrade',
       details: ['Deeper automation and faster response handling', 'Enhanced reporting and implementation attention', 'Premium support for demanding daily operations'],
     },
