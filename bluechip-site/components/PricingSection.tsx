@@ -40,8 +40,8 @@ type PricingSectionProps = {
 export default function PricingSection({ content }: PricingSectionProps) {
   return (
     <section id="pricing" className="scroll-mt-24 py-16 lg:py-24">
-      <div className="container">
-        <div className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto w-full max-w-screen-xl px-4">
+        <div className="mx-auto max-w-4xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Pricing</p>
           <h2 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">{content.heroTitle}</h2>
           <p className="mt-4 text-lg leading-8 text-slate-600">{content.heroSubtitle}</p>
@@ -55,9 +55,9 @@ export default function PricingSection({ content }: PricingSectionProps) {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-4">
+        <div className="mt-16 grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {content.plans.map((plan) => (
-            <div key={plan.id} className={`flex h-full flex-col justify-between rounded-[2rem] border p-7 shadow-sm ${plan.featured ? 'border-indigo-200 bg-gradient-to-b from-indigo-50 to-white shadow-indigo-100' : 'border-slate-200 bg-white'}`}>
+            <div key={plan.id} className={`flex h-full min-h-[28rem] flex-col justify-between rounded-[2rem] border p-7 shadow-sm ${plan.featured ? 'border-indigo-200 bg-gradient-to-b from-indigo-50 to-white shadow-indigo-100' : 'border-slate-200 bg-white'}`}>
               <div className="space-y-6">
                 <div className="space-y-4">
                   {plan.badge ? (
@@ -87,7 +87,7 @@ export default function PricingSection({ content }: PricingSectionProps) {
                 ))}
               </div>
 
-              {plan.details?.length ? (
+              {plan.details && plan.details.length > 0 && (
                 <div className="mt-6 rounded-[1.25rem] border border-slate-200 bg-slate-50/80 p-4">
                   <div className="text-sm font-semibold text-slate-900">{plan.detailTitle || 'Plan details'}</div>
                   <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-600">
@@ -99,17 +99,18 @@ export default function PricingSection({ content }: PricingSectionProps) {
                     ))}
                   </ul>
                 </div>
-              ) : null}
+              )}
 
-              {plan.highlights?.length ? (
-                <div className="mt-6 flex flex-wrap gap-2">
+              {plan.highlights && plan.highlights.length > 0 && (
+                <div className="mt-6 flex flex-col items-center gap-3">
                   {plan.highlights.map((item) => (
-                    <span key={item} className="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 ring-1 ring-slate-200">
+                    <div key={item} className="w-full max-w-[16rem] rounded-2xl bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700 text-center ring-1 ring-slate-200">
                       {item}
-                    </span>
+                    </div>
                   ))}
                 </div>
-              ) : null}
+              )}
+            </div>
 
               <Link href={plan.ctaHref} className={`mt-8 inline-flex rounded-full px-5 py-3 text-sm font-semibold transition ${plan.featured ? 'bg-slate-900 text-white hover:bg-slate-700' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}>
                 {plan.ctaLabel}
