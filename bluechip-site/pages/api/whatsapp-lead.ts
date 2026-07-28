@@ -2,8 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { z } from 'zod'
 import { evaluateBotSignals, getClientIp } from '../../server/services/BotProtectionService'
 import { getGeoLocation } from '../../server/services/GeoService'
-import { InquiryRepositoryPg } from '../../server/repositories/pg/InquiryRepositoryPg'
-import { ContactService } from '../../server/services/ContactService'
+import { LeadQueueService } from '../../server/services/LeadQueueService'
 
 const schema = z.object({
   name: z.string().min(2),
@@ -61,10 +60,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       reviewed: false,
     }
 
-    const service = new ContactService(new InquiryRepositoryPg())
-    const created = await service.createInquiry(payload as any)
+    const queueService = new LeadQueueService()
 
-    return res.status(201).json({ success: true, id: created.id })
+    try {
+      const service = new LeadQueueService()
+      const persisted = await service.flushPendingLeads()
+      if (persisted.processed > 0) {
+        console.info('Flushed pending leads:', persisted.processed)
+      }
+    } catch (retryError) {
+      console.error('Pending lead flush failed:', retryError)
+    }
+
+    try {
+      const service = new LeadQueueService()
+      await service.enqueueLead(payload)
+      return res.status(201).json({ success: true, persisted: false, queued: true })
+    } catch (persistenceError) {
+      console.error('WhatsApp lead queueing failed:', persistenceError)
+      return res.status(200).json({ success: true, persisted: false, queued: false })
+    }
   } catch (error: any) {
     if (error?.issues) {
       return res.status(400).json({ error: 'Validation failed', details: error.issues })

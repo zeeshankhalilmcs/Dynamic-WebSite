@@ -1,6 +1,19 @@
 import { useEffect, useState } from 'react'
 import AdminLayout from '../../components/AdminLayout'
 
+type PromoDraft = {
+  enabled?: boolean
+  title?: string
+  subtitle?: string
+  primaryCtaLabel?: string
+  primaryCtaHref?: string
+  secondaryCtaLabel?: string
+  secondaryCtaHref?: string
+  imagePath?: string
+  displayPages?: string[]
+  persistHours?: number
+}
+
 type PricingPlanDraft = {
   id?: string
   name?: string
@@ -41,6 +54,19 @@ export default function AdminSettingsPage() {
     verification: { enabled: false, otpEnabled: false, otpTtlMinutes: 10, otpMaxAttempts: 5 },
     chatbot: { enabled: false, provider: '', apiKey: '', endpoint: '', greeting: '' },
     whatsapp: { enabled: false, provider: 'twilio', apiKey: '', phoneNumber: '', webhookUrl: '', greeting: '' },
+    announcementBar: { enabled: true, items: ['POS', 'Billing QR', 'Display Digital', 'WhatsApp Catalogue Support', 'Receipts Delivery', 'Staff Tracking', 'Management Revenue', 'Inventory Reports', 'Control Multi-branch', 'Customer & History Management'] },
+    promo: {
+      enabled: true,
+      title: 'Digital Invoicing Software Solutions for Corporate & Non-Corporate Businesses',
+      subtitle: 'Create & post to FBR, professional invoices in seconds. Localized for Pakistan and compatible with tax posting requirements.',
+      primaryCtaLabel: 'Contact for demo',
+      primaryCtaHref: '/contact',
+      secondaryCtaLabel: 'See pricing',
+      secondaryCtaHref: '/pricing',
+      imagePath: '/images/stock/hero.jpg',
+      displayPages: ['homepage'],
+      persistHours: 24,
+    },
   })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -85,6 +111,20 @@ export default function AdminSettingsPage() {
               verification: { enabled: false, otpEnabled: false, otpTtlMinutes: 10, otpMaxAttempts: 5, ...(settingsData.verification || {}) },
               chatbot: { enabled: false, provider: '', apiKey: '', endpoint: '', greeting: '', ...(settingsData.chatbot || {}) },
               whatsapp: { enabled: false, provider: 'twilio', apiKey: '', phoneNumber: '', webhookUrl: '', greeting: '', ...(settingsData.whatsapp || {}) },
+              announcementBar: { enabled: true, items: ['POS', 'Billing QR', 'Display Digital', 'WhatsApp Catalogue Support', 'Receipts Delivery', 'Staff Tracking', 'Management Revenue', 'Inventory Reports', 'Control Multi-branch', 'Customer & History Management'], ...(settingsData.announcementBar || {}) },
+              promo: {
+                enabled: true,
+                title: 'Digital Invoicing Software Solutions for Corporate & Non-Corporate Businesses',
+                subtitle: 'Create & post to FBR, professional invoices in seconds. Localized for Pakistan and compatible with tax posting requirements.',
+                primaryCtaLabel: 'Contact for demo',
+                primaryCtaHref: '/contact',
+                secondaryCtaLabel: 'See pricing',
+                secondaryCtaHref: '/pricing',
+                imagePath: '/images/hero-main.png',
+                displayPages: settingsData.promo?.displayPages ?? (settingsData.promo?.displayPage ? [settingsData.promo.displayPage] : ['homepage']),
+                persistHours: 24,
+                ...(settingsData.promo || {}),
+              },
             })
             setPricing({
               heroTitle: pricingData.heroTitle || '',
@@ -126,7 +166,7 @@ export default function AdminSettingsPage() {
     }
   }
 
-  function updateSection(section: string, field: string, value: string | boolean | number) {
+  function updateSection(section: string, field: string, value: string | boolean | number | string[]) {
     setValues((current: any) => ({
       ...current,
       [section]: {
@@ -289,6 +329,57 @@ export default function AdminSettingsPage() {
                 <input value={values.chatbot.endpoint || ''} onChange={(e) => updateSection('chatbot', 'endpoint', e.target.value)} placeholder="Endpoint URL" className="rounded border px-3 py-2" />
                 <input value={values.chatbot.greeting || ''} onChange={(e) => updateSection('chatbot', 'greeting', e.target.value)} placeholder="Greeting message" className="rounded border px-3 py-2" />
               </div>
+            </section>
+
+            <section className="rounded-3xl bg-white p-6 shadow">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold">Homepage announcement bar</h2>
+                <label className="flex items-center gap-2 text-sm">
+                  <input type="checkbox" checked={values.announcementBar.enabled} onChange={(e) => updateSection('announcementBar', 'enabled', e.target.checked)} />
+                  Enabled
+                </label>
+              </div>
+              <div className="mt-4 space-y-3">
+                <textarea value={(values.announcementBar.items || []).join('\n')} onChange={(e) => updateSection('announcementBar', 'items', e.target.value.split('\n').map((item) => item.trim()).filter(Boolean))} placeholder="One announcement item per line" className="w-full rounded border px-3 py-2" rows={6} />
+                <p className="text-sm text-slate-600">These items will appear in the scrolling bar below the hero section on the homepage.</p>
+              </div>
+            </section>
+
+            <section className="rounded-3xl bg-white p-6 shadow">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold">Promo modal</h2>
+                <label className="flex items-center gap-2 text-sm">
+                  <input type="checkbox" checked={values.promo.enabled} onChange={(e) => updateSection('promo', 'enabled', e.target.checked)} />
+                  Enabled
+                </label>
+              </div>
+              <div className="mt-4 grid gap-4 md:grid-cols-2">
+                <input value={values.promo.title || ''} onChange={(e) => updateSection('promo', 'title', e.target.value)} placeholder="Modal title" className="rounded border px-3 py-2" />
+                <input value={values.promo.subtitle || ''} onChange={(e) => updateSection('promo', 'subtitle', e.target.value)} placeholder="Modal subtitle" className="rounded border px-3 py-2" />
+                <input value={values.promo.primaryCtaLabel || ''} onChange={(e) => updateSection('promo', 'primaryCtaLabel', e.target.value)} placeholder="Primary CTA label" className="rounded border px-3 py-2" />
+                <input value={values.promo.primaryCtaHref || ''} onChange={(e) => updateSection('promo', 'primaryCtaHref', e.target.value)} placeholder="Primary CTA href" className="rounded border px-3 py-2" />
+                <input value={values.promo.secondaryCtaLabel || ''} onChange={(e) => updateSection('promo', 'secondaryCtaLabel', e.target.value)} placeholder="Secondary CTA label" className="rounded border px-3 py-2" />
+                <input value={values.promo.secondaryCtaHref || ''} onChange={(e) => updateSection('promo', 'secondaryCtaHref', e.target.value)} placeholder="Secondary CTA href" className="rounded border px-3 py-2" />
+                <input value={values.promo.imagePath || ''} onChange={(e) => updateSection('promo', 'imagePath', e.target.value)} placeholder="Image path" className="rounded border px-3 py-2" />
+                <div className="grid gap-4 md:grid-cols-2">
+                  <select
+                    multiple
+                    size={6}
+                    value={values.promo.displayPages || ['homepage']}
+                    onChange={(e) => updateSection('promo', 'displayPages', Array.from(e.target.selectedOptions).map((option) => option.value))}
+                    className="rounded border px-3 py-2"
+                  >
+                    <option value="homepage">Homepage</option>
+                    <option value="pos">POS page</option>
+                    <option value="reviews">Reviews page</option>
+                    <option value="why">Why BlueChip page</option>
+                    <option value="blog">Blog index page</option>
+                    <option value="blog-detail">Blog detail page</option>
+                  </select>
+                  <input type="number" value={values.promo.persistHours ?? 24} onChange={(e) => updateSection('promo', 'persistHours', Number(e.target.value))} placeholder="Dismiss duration (hours)" className="rounded border px-3 py-2" />
+                </div>
+              </div>
+              <p className="text-sm text-slate-600">Modal content and target pages will be used by the promo popup across the site. Hold Ctrl / Cmd to select multiple pages.</p>
             </section>
 
             <section className="rounded-3xl bg-white p-6 shadow">

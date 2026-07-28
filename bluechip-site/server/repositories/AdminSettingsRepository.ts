@@ -29,6 +29,22 @@ export type AdminSettings = {
   admin?: {
     fallbackToken?: string
   }
+  announcementBar?: {
+    enabled?: boolean
+    items?: string[]
+  }
+  promo?: {
+    enabled?: boolean
+    title?: string
+    subtitle?: string
+    primaryCtaLabel?: string
+    primaryCtaHref?: string
+    secondaryCtaLabel?: string
+    secondaryCtaHref?: string
+    imagePath?: string
+    displayPages?: string[]
+    persistHours?: number
+  }
   pricing?: {
     heroTitle?: string
     heroSubtitle?: string

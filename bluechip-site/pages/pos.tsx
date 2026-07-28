@@ -1,5 +1,6 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import AnnouncementBar from '../components/AnnouncementBar'
 
 const features = [
   'Multi-branch retail POS with centralized controls',
@@ -368,6 +369,8 @@ export default function POS() {
             </div>
           </div>
         </section>
+
+        <AnnouncementBar />
 
         <section className="mt-8 grid gap-4 lg:grid-cols-4" id="features">
           {retailBenefits.map((item) => (

@@ -2,6 +2,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Clients from '../components/Clients'
 import Hero from '../components/Hero'
+import AnnouncementBar from '../components/AnnouncementBar'
 
 const capabilities = [
   {
@@ -23,6 +24,7 @@ export default function Home(){
     <div>
       <Header />
       <Hero />
+      <AnnouncementBar />
       <main className="container py-16 lg:py-20">
         <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="animate-fade-up rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">

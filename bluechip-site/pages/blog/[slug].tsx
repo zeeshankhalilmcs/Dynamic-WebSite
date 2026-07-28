@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import BlogCard from '../../components/BlogCard'
+import AnnouncementBar from '../../components/AnnouncementBar'
 import BlogContentRenderer from '../../components/BlogContentRenderer'
 import { getAllPosts, getPostBySlug, getRelatedPosts } from '../../server/services/BlogService'
 import type { BlogPost } from '../../server/services/BlogService'
@@ -106,6 +107,8 @@ export default function BlogPostPage({ post, relatedPosts }: BlogPostPageProps) 
             <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(canonical)}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noreferrer" className="rounded-full border px-4 py-2 text-sm font-semibold">X / Twitter</a>
           </div>
         </article>
+
+        <AnnouncementBar />
 
         {relatedPosts.length > 0 && (
           <section className="mt-12">

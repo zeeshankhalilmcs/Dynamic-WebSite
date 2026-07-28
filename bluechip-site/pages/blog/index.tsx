@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import BlogCard from '../../components/BlogCard'
+import AnnouncementBar from '../../components/AnnouncementBar'
 import BookConsultationCard from '../../components/BookConsultationCard'
 import { getAllPosts, getFeaturedPosts } from '../../server/services/BlogService'
 import type { BlogPost } from '../../server/services/BlogService'
@@ -91,6 +92,8 @@ export default function BlogPage({ posts: initialPosts, featuredPosts, initialHa
             ))}
           </div>
         </section>
+
+        <AnnouncementBar />
 
         {featured && (
           <section className="mt-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">

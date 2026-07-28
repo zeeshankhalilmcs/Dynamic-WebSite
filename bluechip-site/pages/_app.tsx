@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import ChatWidget from '../components/ChatWidget'
 import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton'
+import PromoModal from '../components/PromoModal'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href="/images/brand-mark.svg" />
       </Head>
       <Component {...pageProps} />
+      {!isAdmin && <PromoModal />}
       {!isAdmin && <WhatsAppFloatingButton />}
       <ChatWidget />
     </>

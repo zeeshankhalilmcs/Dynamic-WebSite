@@ -113,7 +113,10 @@ export default function PricingSection({ content }: PricingSectionProps) {
             const displayPrice = billingMode === 'monthly'
               ? (monthlyAmount !== null ? formatCurrency(monthlyAmount) : plan.price)
               : (yearlyDiscountedAmount !== null ? formatCurrency(yearlyDiscountedAmount) : plan.price)
-            const showYearlySavings = billingMode === 'yearly' && yearlyDiscountedAmount !== null && yearlyFullAmount !== null && yearlyDiscountedAmount < yearlyFullAmount
+            const discountPercent = billingMode === 'yearly' && yearlyDiscountedAmount !== null && yearlyFullAmount !== null && yearlyDiscountedAmount < yearlyFullAmount
+              ? Math.round(((yearlyFullAmount - yearlyDiscountedAmount) / yearlyFullAmount) * 100)
+              : null
+            const showYearlySavings = billingMode === 'yearly' && discountPercent !== null && discountPercent > 0
 
             return (
             <div key={plan.id} className={`flex h-full min-h-[28rem] flex-col justify-between rounded-[2rem] border p-7 shadow-sm ${plan.featured ? 'border-indigo-200 bg-gradient-to-b from-indigo-50 to-white shadow-indigo-100' : 'border-slate-200 bg-white'}`}>
@@ -137,7 +140,7 @@ export default function PricingSection({ content }: PricingSectionProps) {
                   {showYearlySavings && !isCustomPlan && (
                     <div className="flex flex-wrap items-center gap-2 text-sm">
                       <span className="text-slate-400 line-through">{formatCurrency(yearlyFullAmount as number)}</span>
-                      <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">Save 20%</span>
+                      <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">Save {discountPercent}%</span>
                     </div>
                   )}
                 </div>

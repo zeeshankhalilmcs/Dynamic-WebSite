@@ -1,6 +1,7 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import BookConsultationCard from '../components/BookConsultationCard'
+import AnnouncementBar from '../components/AnnouncementBar'
 
 const testimonials = [
   {
@@ -65,6 +66,8 @@ export default function Reviews() {
             </div>
           </div>
         </section>
+
+        <AnnouncementBar />
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           {testimonials.map((item) => (

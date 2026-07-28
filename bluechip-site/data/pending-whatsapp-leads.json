@@ -1,0 +1,54 @@
+[
+  {
+    "id": "1785192844304-63b4ce6ba35b78",
+    "payload": {
+      "name": "hamze",
+      "first_name": "hamze",
+      "last_name": null,
+      "company": null,
+      "phone": "03087607119",
+      "email": "whatsapp-03087607119@whatsapp.local",
+      "industry": null,
+      "inquiry_type": "WhatsApp Lead",
+      "message": "User requested a WhatsApp conversation.",
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "user_ip": "::1",
+      "country": null,
+      "region": null,
+      "city": null,
+      "is_bot": false,
+      "is_validated": false,
+      "reviewed": false
+    },
+    "createdAt": "2026-07-27T22:54:04.304Z",
+    "attempts": 1,
+    "nextAttemptAt": "2026-07-27T23:00:36.280Z",
+    "lastError": ""
+  },
+  {
+    "id": "1785192936282-0f1ec3a47db1a8",
+    "payload": {
+      "name": "hamze",
+      "first_name": "hamze",
+      "last_name": null,
+      "company": null,
+      "phone": "03087607119",
+      "email": "whatsapp-03087607119@whatsapp.local",
+      "industry": null,
+      "inquiry_type": "WhatsApp Lead",
+      "message": "User requested a WhatsApp conversation.",
+      "ip": "::1",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "user_ip": "::1",
+      "country": null,
+      "region": null,
+      "city": null,
+      "is_bot": false,
+      "is_validated": false,
+      "reviewed": false
+    },
+    "createdAt": "2026-07-27T22:55:36.282Z",
+    "attempts": 0
+  }
+]

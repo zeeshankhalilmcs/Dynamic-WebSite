@@ -1,6 +1,7 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import BookConsultationCard from '../components/BookConsultationCard'
+import AnnouncementBar from '../components/AnnouncementBar'
 
 const reasons = [
   '19+ years of hands-on implementation experience',
@@ -88,6 +89,8 @@ export default function Why() {
             </div>
           </div>
         </section>
+
+        <AnnouncementBar />
 
         <section className="mt-8 grid gap-4 md:grid-cols-3">
           {pillars.map((pillar) => (
