@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import AdminLayout from '../../components/AdminLayout'
+import PromoModal from '../../components/PromoModal'
 
 type PromoDraft = {
   enabled?: boolean
@@ -11,7 +12,9 @@ type PromoDraft = {
   secondaryCtaHref?: string
   imagePath?: string
   displayPages?: string[]
+  forceShowOnHomepage?: boolean
   persistHours?: number
+  dismissDays?: number
 }
 
 type PricingPlanDraft = {
@@ -63,12 +66,16 @@ export default function AdminSettingsPage() {
       primaryCtaHref: '/contact',
       secondaryCtaLabel: 'See pricing',
       secondaryCtaHref: '/pricing',
-      imagePath: '/images/stock/hero.jpg',
+      imagePath: '/images/stock/hero.png',
       displayPages: ['homepage'],
-      persistHours: 24,
+      forceShowOnHomepage: false,
+      dismissDays: 0,
+      persistHours: 0,
     },
   })
+  const [promoPreviewOpen, setPromoPreviewOpen] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [promoPreviewOpen, setPromoPreviewOpen] = useState(false)
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState('')
   const [pricing, setPricing] = useState<PricingDraft>({
@@ -120,9 +127,20 @@ export default function AdminSettingsPage() {
                 primaryCtaHref: '/contact',
                 secondaryCtaLabel: 'See pricing',
                 secondaryCtaHref: '/pricing',
-                imagePath: '/images/hero-main.png',
+                imagePath: '/images/stock/hero.png',
                 displayPages: settingsData.promo?.displayPages ?? (settingsData.promo?.displayPage ? [settingsData.promo.displayPage] : ['homepage']),
-                persistHours: 24,
+                forceShowOnHomepage: settingsData.promo?.forceShowOnHomepage ?? false,
+                // compute dismissDays from stored settings (backward compatible with persistHours)
+                dismissDays: typeof settingsData.promo?.dismissDays === 'number'
+                  ? settingsData.promo.dismissDays
+                  : typeof settingsData.promo?.persistHours === 'number'
+                  ? Math.floor(settingsData.promo.persistHours / 24)
+                  : 0,
+                persistHours: typeof settingsData.promo?.dismissDays === 'number'
+                  ? settingsData.promo.dismissDays * 24
+                  : typeof settingsData.promo?.persistHours === 'number'
+                  ? settingsData.promo.persistHours
+                  : 0,
                 ...(settingsData.promo || {}),
               },
             })
@@ -346,12 +364,20 @@ export default function AdminSettingsPage() {
             </section>
 
             <section className="rounded-3xl bg-white p-6 shadow">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold">Promo modal</h2>
-                <label className="flex items-center gap-2 text-sm">
-                  <input type="checkbox" checked={values.promo.enabled} onChange={(e) => updateSection('promo', 'enabled', e.target.checked)} />
-                  Enabled
-                </label>
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h2 className="text-xl font-semibold">Promo modal</h2>
+                  <p className="text-sm text-slate-600">Preview the promo instantly without saving.</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <label className="flex items-center gap-2 text-sm">
+                    <input type="checkbox" checked={values.promo.enabled} onChange={(e) => updateSection('promo', 'enabled', e.target.checked)} />
+                    Enabled
+                  </label>
+                  <button type="button" onClick={() => setPromoPreviewOpen(true)} className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700">
+                    Preview promo
+                  </button>
+                </div>
               </div>
               <div className="mt-4 grid gap-4 md:grid-cols-2">
                 <input value={values.promo.title || ''} onChange={(e) => updateSection('promo', 'title', e.target.value)} placeholder="Modal title" className="rounded border px-3 py-2" />
@@ -361,6 +387,10 @@ export default function AdminSettingsPage() {
                 <input value={values.promo.secondaryCtaLabel || ''} onChange={(e) => updateSection('promo', 'secondaryCtaLabel', e.target.value)} placeholder="Secondary CTA label" className="rounded border px-3 py-2" />
                 <input value={values.promo.secondaryCtaHref || ''} onChange={(e) => updateSection('promo', 'secondaryCtaHref', e.target.value)} placeholder="Secondary CTA href" className="rounded border px-3 py-2" />
                 <input value={values.promo.imagePath || ''} onChange={(e) => updateSection('promo', 'imagePath', e.target.value)} placeholder="Image path" className="rounded border px-3 py-2" />
+                <label className="flex items-center gap-2 text-sm">
+                  <input type="checkbox" checked={values.promo.forceShowOnHomepage || false} onChange={(e) => updateSection('promo', 'forceShowOnHomepage', e.target.checked)} />
+                  Always show on homepage (ignore dismissal)
+                </label>
                 <div className="grid gap-4 md:grid-cols-2">
                   <select
                     multiple
@@ -376,7 +406,10 @@ export default function AdminSettingsPage() {
                     <option value="blog">Blog index page</option>
                     <option value="blog-detail">Blog detail page</option>
                   </select>
-                  <input type="number" value={values.promo.persistHours ?? 24} onChange={(e) => updateSection('promo', 'persistHours', Number(e.target.value))} placeholder="Dismiss duration (hours)" className="rounded border px-3 py-2" />
+                  <div className="flex items-center gap-2">
+                    <input type="number" min={0} value={values.promo.dismissDays ?? Math.floor((values.promo.persistHours || 0) / 24)} onChange={(e) => updateSection('promo', 'dismissDays', Number(e.target.value))} placeholder="Dismiss for (days)" className="rounded border px-3 py-2" />
+                    <span className="text-sm text-slate-600">0 = show every time</span>
+                  </div>
                 </div>
               </div>
               <p className="text-sm text-slate-600">Modal content and target pages will be used by the promo popup across the site. Hold Ctrl / Cmd to select multiple pages.</p>
@@ -453,6 +486,19 @@ export default function AdminSettingsPage() {
           </div>
         ) : null}
       </div>
+      {promoPreviewOpen ? (
+        <PromoModal
+          previewMode
+          previewOpen={promoPreviewOpen}
+          previewSettings={{
+            ...values.promo,
+            persistHours: typeof values.promo.dismissDays === 'number'
+              ? values.promo.dismissDays * 24
+              : values.promo.persistHours ?? 0,
+          }}
+          onClose={() => setPromoPreviewOpen(false)}
+        />
+      ) : null}
     </AdminLayout>
   )
 }

@@ -9,7 +9,9 @@ export type PromoDraft = {
   secondaryCtaHref?: string
   imagePath?: string
   displayPages?: string[]
+  forceShowOnHomepage?: boolean
   persistHours?: number
+  dismissDays?: number
 }
 
 export const pageOptions = ['homepage', 'pos', 'reviews', 'why', 'blog', 'blog-detail'] as const

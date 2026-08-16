@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 const clients = [
+  { name: 'Alkhidmat Hospital Rahim Yar Khan', image: 'alkhidmat-hospital.jpg' },
+  { name: 'Jallundhar Sweets Rahim Yar Khan', image: 'jallundhar-sweets.jpg' },
   { name: 'Amreli Steel', image: 'amreli-steel.jpg' },
   { name: 'Appollo Seed', image: 'appollo-seed.png' },
   { name: 'Cake n Cookies', image: 'cake-n-cookies.jpg' },
@@ -52,7 +54,7 @@ export default function Clients() {
     <section className="mt-8">
       <div className="container">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-slate-900">View Our Clients</h2>
+          <h2 className="text-3xl font-bold text-slate-900">Our Clients</h2>
           <div className="mx-auto mt-4 h-0.5 w-48 bg-slate-200" />
         </div>
 

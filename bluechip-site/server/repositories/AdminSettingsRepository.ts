@@ -43,6 +43,8 @@ export type AdminSettings = {
     secondaryCtaHref?: string
     imagePath?: string
     displayPages?: string[]
+    forceShowOnHomepage?: boolean
+    dismissDays?: number
     persistHours?: number
   }
   pricing?: {

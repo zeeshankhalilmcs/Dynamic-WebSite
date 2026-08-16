@@ -1,4 +1,41 @@
+import { useEffect } from 'react'
+
 export default function Hero(){
+  const imageSrc = '/images/stock/hero.png?v=1'
+  useEffect(() => {
+    console.log('Hero image src used (render):', imageSrc)
+
+    // Try fetching the image to verify HTTP status and blob size
+    ;(async () => {
+      try {
+        const res = await fetch(imageSrc, { cache: 'no-cache' })
+        console.log('Hero image fetch status:', res.status, res.statusText, 'content-type:', res.headers.get('content-type'))
+        try {
+          const blob = await res.blob()
+          console.log('Hero image blob size:', blob.size, 'bytes')
+        } catch (bErr) {
+          console.warn('Could not read hero image blob:', bErr)
+        }
+      } catch (err) {
+        console.error('Hero image fetch error:', err)
+      }
+
+      // Inspect the rendered image element
+      try {
+        const el = document.querySelector('img[alt="Business technology hero"]') as HTMLImageElement | null
+        if (el) {
+          console.log('Hero img element natural/offset size:', el.naturalWidth, 'x', el.naturalHeight, 'offset', el.offsetWidth, 'x', el.offsetHeight)
+          const cs = getComputedStyle(el)
+          console.log('Hero img computedStyle:', { display: cs.display, visibility: cs.visibility, opacity: cs.opacity })
+        } else {
+          console.log('Hero img element not found in DOM')
+        }
+      } catch (domErr) {
+        console.warn('Error inspecting hero img element:', domErr)
+      }
+    })()
+  }, [])
+
   return (
     <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.35),_transparent_40%),linear-gradient(135deg,_#0f172a_0%,_#1e293b_55%,_#312e81_100%)] py-20 text-white lg:py-28">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,transparent_0%,rgba(255,255,255,0.08)_45%,transparent_100%)] opacity-50" />
@@ -35,7 +72,19 @@ export default function Hero(){
         </div>
 
         <div className="rounded-[2rem] border border-white/10 bg-slate-950/50 p-4 shadow-2xl shadow-slate-950/30 backdrop-blur">
-          <img src="/images/hero-main.png" alt="Business technology hero" className="h-[420px] w-full rounded-[1.5rem] object-cover" />
+          {/* debug: use stock hero and log load/errors to console */}
+          {(() => {
+            const imageSrc = '/images/hero-main.png?v=1'
+            return (
+              <img
+                src={imageSrc}
+                alt="Business technology hero"
+                className="h-[420px] w-full rounded-[1.5rem] object-cover"
+                onLoad={() => console.log('Hero image loaded:', imageSrc)}
+                onError={(e) => console.error('Hero image failed to load:', imageSrc, e)}
+              />
+            )
+          })()}
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl bg-white/10 p-4">
               <div className="text-sm font-semibold text-slate-200">Custom ERP & POS</div>

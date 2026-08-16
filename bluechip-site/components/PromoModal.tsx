@@ -11,20 +11,32 @@ type PromoSettings = {
   secondaryCtaHref: string
   imagePath: string
   displayPages: string[]
+  forceShowOnHomepage?: boolean
+  dismissDays?: number
   persistHours: number
+}
+
+type PromoModalProps = {
+  previewSettings?: Partial<PromoSettings>
+  previewOpen?: boolean
+  previewMode?: boolean
+  onClose?: () => void
 }
 
 const defaultPromoSettings: PromoSettings = {
   enabled: true,
   title: 'Digital Invoicing Software Solutions for Corporate & Non-Corporate Businesses',
   subtitle: 'Create & post to FBR, professional invoices in seconds. Localized for Pakistan and compatible with tax posting requirements.',
-  primaryCtaLabel: 'Contact for demo',
+  primaryCtaLabel: 'Contact for Demo',
   primaryCtaHref: '/contact',
-  secondaryCtaLabel: 'See pricing',
+  secondaryCtaLabel: 'See Pricing',
   secondaryCtaHref: '/pricing',
-  imagePath: '/images/hero-main.png',
+  imagePath: '/images/stock/hero.png',
   displayPages: ['homepage'],
-  persistHours: 24,
+  forceShowOnHomepage: false,
+  dismissDays: 0,
+  // persistHours of 0 means "do not remember dismissal" -> show every time by default
+  persistHours: 0,
 }
 
 const PAGE_DISPLAY_MAP: Record<string, string[]> = {
@@ -56,13 +68,19 @@ function shouldShowOnPage(settings: PromoSettings, pathname: string) {
   })
 }
 
-export default function PromoModal() {
+export default function PromoModal({ previewSettings, previewOpen, previewMode, onClose }: PromoModalProps = {}) {
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const [settings, setSettings] = useState<PromoSettings>(defaultPromoSettings)
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
+    if (previewSettings) {
+      setSettings({ ...defaultPromoSettings, ...previewSettings })
+      setLoaded(true)
+      return
+    }
+
     const loadSettings = async () => {
       try {
         const res = await fetch('/api/settings')
@@ -77,25 +95,58 @@ export default function PromoModal() {
     }
 
     loadSettings()
-  }, [])
+  }, [previewSettings])
 
   useEffect(() => {
     if (!loaded) return
-    if (!settings.enabled) return
-    if (!shouldShowOnPage(settings, router.pathname)) return
+    if (previewMode && previewOpen) {
+      setOpen(true)
+      return
+    }
 
-    const dismissedAt = getDismissedTimestamp()
-    const maxAge = settings.persistHours * 60 * 60 * 1000
-    if (dismissedAt && Date.now() - dismissedAt < maxAge) return
+    // debug: log the resolved promo settings (especially image path)
+        console.log('Promo settings loaded:', settings)
+        if (!settings.enabled) {
+          console.log('Promo disabled via settings')
+          return
+        }
 
-    const timer = window.setTimeout(() => setOpen(true), 700)
-    return () => window.clearTimeout(timer)
-  }, [loaded, settings, router.pathname])
+        const onPage = shouldShowOnPage(settings, router.pathname)
+        console.log('Promo shouldShowOnPage?', onPage, 'router.pathname=', router.pathname)
+        if (!onPage) return
+
+        // If we're on the homepage and the promo is targeted at homepage,
+        // always show it (ignore any previously set dismissal). This makes
+        // the promo appear whenever the homepage loads as requested.
+        const forceShowOnHomepage = settings.forceShowOnHomepage === true && router.pathname === '/' && Array.isArray(settings.displayPages) && settings.displayPages.includes('homepage')
+        if (forceShowOnHomepage) {
+          console.log('Promo forced on homepage by admin: ignoring dismissal and showing modal')
+        } else {
+          const dismissedAt = getDismissedTimestamp()
+          // If persistHours is 0 (default), we don't persist dismissal and always show the promo
+          const maxAge = typeof settings.persistHours === 'number' && settings.persistHours > 0 ? settings.persistHours * 60 * 60 * 1000 : null
+          const age = dismissedAt ? Date.now() - dismissedAt : null
+          console.log('Promo dismissedAt:', dismissedAt, 'age ms:', age, 'maxAge ms:', maxAge)
+          if (maxAge !== null && dismissedAt && age !== null && age < maxAge) {
+            console.log('Promo suppressed because dismissed recently')
+            return
+          }
+        }
+
+        const timer = window.setTimeout(() => setOpen(true), 700)
+        return () => window.clearTimeout(timer)
+  }, [loaded, settings, router.pathname, previewMode, previewOpen])
 
   function close(remember = true) {
     setOpen(false)
+    if (previewMode) {
+      remember = false
+    }
     if (remember) {
       localStorage.setItem('promoModalDismissedAt', String(Date.now()))
+    }
+    if (previewMode && onClose) {
+      onClose()
     }
   }
 
