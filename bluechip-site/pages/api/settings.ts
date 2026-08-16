@@ -27,8 +27,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       imagePath: settings.promo?.imagePath || '/images/stock/hero.png',
       displayPages: Array.isArray(settings.promo?.displayPages)
         ? settings.promo.displayPages
-        : settings.promo?.displayPage
-        ? [settings.promo.displayPage]
         : ['homepage'],
       forceShowOnHomepage: settings.promo?.forceShowOnHomepage === true,
       // Support dismissal configured in days (promo.dismissDays) for admin UX.

@@ -75,7 +75,6 @@ export default function AdminSettingsPage() {
   })
   const [promoPreviewOpen, setPromoPreviewOpen] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [promoPreviewOpen, setPromoPreviewOpen] = useState(false)
   const [saving, setSaving] = useState(false)
   const [message, setMessage] = useState('')
   const [pricing, setPricing] = useState<PricingDraft>({
