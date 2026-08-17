@@ -51,14 +51,15 @@ function ClientLogo({ name, slug, image }: { name: string; slug: string; image?:
 
 export default function Clients() {
   return (
-    <section className="mt-8">
-      <div className="container">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-slate-900">Our Clients</h2>
-          <div className="mx-auto mt-4 h-0.5 w-48 bg-slate-200" />
+    <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32">
+      <div className="mx-auto w-full max-w-7xl">
+        <div className="mb-12 text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">Trusted Partners</p>
+          <h2 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">Our Clients</h2>
+          <p className="mt-4 text-lg text-slate-600">Trusted by businesses across industries</p>
         </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {clients.map((client) => {
             const slug = client.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 

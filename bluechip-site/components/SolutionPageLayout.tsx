@@ -160,24 +160,49 @@ export default function SolutionPageLayout({
             </section>
 
             <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32">
-              <div className="mx-auto mb-10 w-full max-w-7xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">{branchesSectionLabel}</p>
-                <h2 className="mt-3 text-3xl font-bold text-slate-900">{branchesHeading}</h2>
-              </div>
-              <div className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-2">
-                {branchesFeatures!.map((feature, index) => (
-                  <div key={feature.title} className="rounded-xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-200 hover:bg-white">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-indigo-200 bg-indigo-100 text-lg font-bold text-indigo-700">
-                        {index + 3}
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-slate-900">{feature.title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-slate-600">{feature.description}</p>
+              <div className="mx-auto w-full max-w-7xl">
+                <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+                  <div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">{branchesSectionLabel}</p>
+                    <h2 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">{branchesHeading}</h2>
+
+                    <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                      {branchesFeatures!.slice(0, 6).map((feature, index) => (
+                        <div key={feature.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-indigo-200 hover:bg-white">
+                          <div className="mb-3 flex items-center justify-between gap-3">
+                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 text-sm font-bold text-indigo-700">
+                              {index + 1}
+                            </span>
+                            <span className="h-px flex-1 bg-slate-200" />
+                          </div>
+                          <h3 className="text-base font-semibold text-slate-900">{feature.title}</h3>
+                          <p className="mt-2 text-sm leading-6 text-slate-600">{feature.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100 shadow-[0_25px_60px_-30px_rgba(15,23,42,0.35)]">
+                      <img
+                        src="/images/blog/accros-branches-image.png"
+                        alt="Multi-branch retail operations overview"
+                        className="h-[420px] w-full object-cover object-center lg:h-[560px]"
+                      />
+                    </div>
+
+                    <div className="absolute -bottom-5 left-5 right-5 rounded-2xl border border-white/60 bg-slate-900/90 p-4 text-white shadow-xl backdrop-blur-sm">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-300">Unified control</p>
+                      <div className="mt-2 flex items-center justify-between gap-4 text-sm">
+                        <span>Stock</span>
+                        <span className="text-slate-300">•</span>
+                        <span>Pricing</span>
+                        <span className="text-slate-300">•</span>
+                        <span>Sales</span>
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
             </section>
           </>
@@ -213,17 +238,49 @@ export default function SolutionPageLayout({
 
         {modules && modules.length > 0 && (
           <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32">
-            <div className="mx-auto mb-10 w-full max-w-7xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">Key modules</p>
-              <h2 className="mt-3 text-3xl font-bold text-slate-900">Everything you need, built in</h2>
-            </div>
-            <div className="mx-auto grid w-full max-w-7xl gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-              {modules.map((module) => (
-                <div key={module.name} className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center shadow-sm transition hover:border-indigo-200 hover:bg-white">
-                  {module.icon && <div className="text-3xl">{module.icon}</div>}
-                  <p className="mt-3 text-sm font-semibold text-slate-900">{module.name}</p>
+            <div className="mx-auto w-full max-w-7xl">
+              <div className="grid items-center gap-8 lg:grid-cols-[1.08fr_0.92fr]">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">Key modules</p>
+                  <h2 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">Everything you need, built in</h2>
+
+                  <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                    {modules.slice(0, 8).map((module, index) => (
+                      <div key={module.name} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm transition hover:border-indigo-200 hover:bg-white hover:shadow-md">
+                        <div className="mb-3 flex items-center justify-between gap-3">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 text-sm font-bold text-indigo-700">
+                            {index + 1}
+                          </span>
+                          <span className="h-px flex-1 bg-slate-200" />
+                        </div>
+                        {module.icon && <div className="text-2xl">{module.icon}</div>}
+                        <p className="mt-3 text-sm font-semibold text-slate-900">{module.name}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+
+                <div className="relative">
+                  <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100 shadow-[0_25px_60px_-30px_rgba(15,23,42,0.35)]">
+                    <img
+                      src="/images/blog/key-modules.jpg"
+                      alt="Retail POS key modules overview"
+                      className="h-[420px] w-full object-cover object-center lg:h-[560px]"
+                    />
+                  </div>
+
+                  <div className="absolute -bottom-5 left-5 right-5 rounded-2xl border border-white/60 bg-slate-900/90 p-4 text-white shadow-xl backdrop-blur-sm">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-300">Core retail stack</p>
+                    <div className="mt-2 flex items-center justify-between gap-4 text-sm">
+                      <span>POS</span>
+                      <span className="text-slate-300">•</span>
+                      <span>Stock</span>
+                      <span className="text-slate-300">•</span>
+                      <span>Reports</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
         )}
