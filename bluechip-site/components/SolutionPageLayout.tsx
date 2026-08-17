@@ -1,8 +1,10 @@
 import Link from 'next/link'
+import { useState } from 'react'
 import type { ReactNode } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import AnnouncementBar from './AnnouncementBar'
+import WhatsAppLeadModal from './WhatsAppLeadModal'
 
 type FeatureItem = {
   title: string
@@ -26,6 +28,7 @@ type SolutionPageLayoutProps = {
   title: string
   subtitle: string
   heroBullets: string[]
+  heroBackgroundImage?: string
   features?: FeatureItem[]
   counterFeatures?: FeatureItem[]
   branchesFeatures?: FeatureItem[]
@@ -34,6 +37,8 @@ type SolutionPageLayoutProps = {
   ctaLabel: string
   ctaHref: string
   extraContent?: React.ReactNode
+  afterCtaContent?: React.ReactNode
+  afterClientsContent?: React.ReactNode
   counterSectionLabel?: string
   counterHeading?: string
   branchesSectionLabel?: string
@@ -46,6 +51,7 @@ export default function SolutionPageLayout({
   title,
   subtitle,
   heroBullets,
+  heroBackgroundImage,
   features,
   counterFeatures,
   branchesFeatures,
@@ -54,6 +60,8 @@ export default function SolutionPageLayout({
   ctaLabel,
   ctaHref,
   extraContent,
+  afterCtaContent,
+  afterClientsContent,
   counterSectionLabel = 'At the Counter',
   counterHeading = 'Fast checkout that keeps operations smooth',
   branchesSectionLabel = 'Across Branches',
@@ -63,29 +71,56 @@ export default function SolutionPageLayout({
   // Determine if using workflow stages (counterFeatures + branchesFeatures) or flat features
   const hasWorkflowStages = counterFeatures && branchesFeatures
   const allFeatures = features || []
+  const [isWhatsAppModalOpen, setIsWhatsAppModalOpen] = useState(false)
+
+  const isContactCta = ctaHref === '/contact'
+
   return (
     <div className="min-h-screen bg-slate-50">
       <Header />
       <AnnouncementBar />
       <main className="w-full">
-        <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32">
-          <div className="mx-auto w-full max-w-7xl">
+        <section
+          className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32"
+          style={
+            heroBackgroundImage
+              ? {
+                  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.38)), url(${heroBackgroundImage})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                }
+              : undefined
+          }
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
+          <div className="relative mx-auto w-full max-w-7xl">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">{eyebrow}</p>
-                <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{title}</h1>
-                <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{subtitle}</p>
+                <p className="inline-flex rounded-full bg-cyan-400 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-950 shadow-lg shadow-cyan-900/20">{eyebrow}</p>
+                <h1 className="mt-4 text-3xl font-bold tracking-tight text-white drop-shadow-md sm:text-4xl lg:text-5xl">{title}</h1>
+                <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-100 drop-shadow-sm">{subtitle}</p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href={ctaHref} className="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700">
-                    {ctaLabel}
-                  </Link>
-                  <Link href="/pricing" className="rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
+                  {isContactCta ? (
+                    <button
+                      type="button"
+                      onClick={() => setIsWhatsAppModalOpen(true)}
+                      className="rounded-full border border-cyan-400/50 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-slate-900/60"
+                    >
+                      {ctaLabel}
+                    </button>
+                  ) : (
+                    <Link href={ctaHref} className="rounded-full border border-cyan-400/50 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-slate-900/60">
+                      {ctaLabel}
+                    </Link>
+                  )}
+                  <Link href="/pricing" className="rounded-full border border-cyan-400/50 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-slate-900/60">
                     View pricing
                   </Link>
                 </div>
               </div>
 
-              <div className="rounded-[1.75rem] bg-slate-900 p-7 text-white shadow-lg">
+              <div className="rounded-[1.75rem] bg-slate-900/90 p-7 text-white shadow-lg backdrop-blur-sm">
                 <div className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-300">Why teams choose it</div>
                 <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-200">
                   {heroBullets.map((item) => (
@@ -208,11 +243,38 @@ export default function SolutionPageLayout({
                 A modern retail management system for marts, supermarkets, and growing multi-store businesses, built to improve retail POS efficiency, inventory control, branch reporting, and operational visibility.
               </p>
             </div>
-            <Link href={ctaHref} className="whitespace-nowrap rounded-full bg-cyan-500 px-8 py-3 text-sm font-semibold text-slate-900 transition duration-300 hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/50">
-              {ctaLabel}
-            </Link>
+            {isContactCta ? (
+              <button
+                type="button"
+                onClick={() => setIsWhatsAppModalOpen(true)}
+                className="whitespace-nowrap rounded-full bg-cyan-500 px-8 py-3 text-sm font-semibold text-slate-900 transition duration-300 hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/50"
+              >
+                {ctaLabel}
+              </button>
+            ) : (
+              <Link href={ctaHref} className="whitespace-nowrap rounded-full bg-cyan-500 px-8 py-3 text-sm font-semibold text-slate-900 transition duration-300 hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/50">
+                {ctaLabel}
+              </Link>
+            )}
           </div>
         </section>
+
+        {afterCtaContent && (
+          <div className="w-full bg-white px-8 py-20 lg:px-12 lg:py-24">
+            <div className="mx-auto w-full max-w-7xl">{afterCtaContent}</div>
+          </div>
+        )}
+
+        {afterClientsContent && (
+          <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-slate-900 px-8 py-20 lg:px-12 lg:py-32">
+            <div className="mx-auto w-full max-w-7xl">{afterClientsContent}</div>
+          </section>
+        )}
+
+        <WhatsAppLeadModal
+          isOpen={isWhatsAppModalOpen}
+          onClose={() => setIsWhatsAppModalOpen(false)}
+        />
       </main>
       <Footer />
     </div>

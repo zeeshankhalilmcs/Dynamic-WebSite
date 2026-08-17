@@ -1,4 +1,38 @@
 import SolutionPageLayout from '../components/SolutionPageLayout'
+import Clients from '../components/Clients'
+
+const faqItems = [
+  {
+    question: 'What is retail POS software?',
+    answer:
+      'Retail POS software is a business management system that helps stores process sales, track stock, manage pricing, and monitor daily store operations from one platform.',
+  },
+  {
+    question: 'What are the benefits of POS software for marts and supermarkets?',
+    answer:
+      'It helps reduce checkout delays, improve stock visibility, support faster invoicing, strengthen cash control, and give managers clearer performance reports across the whole retail operation.',
+  },
+  {
+    question: 'Which POS software is best for grocery and retail businesses?',
+    answer:
+      'The best solution is one that supports fast sales processing, inventory accuracy, branch monitoring, customer loyalty, and easy reporting for daily operations and growth planning.',
+  },
+  {
+    question: 'Can this system manage inventory across multiple locations?',
+    answer:
+      'Yes. Multi-store retail businesses can track stock movement, transfer inventory between branches, and compare branch-level performance from one centralized retail dashboard.',
+  },
+  {
+    question: 'Does it support billing, stock control, and sales reporting in one system?',
+    answer:
+      'Yes. A complete retail POS setup brings billing, product management, stock tracking, and reporting together so store teams can operate more efficiently.',
+  },
+  {
+    question: 'Is this suitable for growing retail businesses?',
+    answer:
+      'Absolutely. The system is designed for marts, supermarkets, and expanding retail networks that need better control, faster checkout, and clearer visibility across stores.',
+  },
+]
 
 const counterFeatures = [
   {
@@ -146,6 +180,7 @@ export default function MartRetailSoftwarePage() {
       eyebrow="Retail Software"
       title="Retail POS Software for Marts, Supermarkets, and Growing Retail Businesses"
       subtitle="A complete retail management system built for supermarkets, marts, pharmacies, and multi-store businesses that need faster checkout, accurate stock control, and clearer branch-level reporting."
+      heroBackgroundImage="/images/blog/retail-page-hero-image.png"
       heroBullets={[
         'Fast retail POS software designed for busy checkout counters',
         'Real-time inventory management across stores, shelves, and warehouses',
@@ -162,6 +197,27 @@ export default function MartRetailSoftwarePage() {
       modules={modules}
       ctaLabel="Discuss your retail needs"
       ctaHref="/contact"
+      afterCtaContent={<Clients />}
+      afterClientsContent={
+        <div className="mb-10">
+          <p className="text-center text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">FAQ</p>
+          <h2 className="mt-3 text-center text-3xl font-bold text-white">Frequently asked questions</h2>
+
+          <div className="mt-10 space-y-4">
+            {faqItems.map((item, index) => (
+              <div key={item.question} className="overflow-hidden rounded-2xl border border-slate-700 bg-slate-800/60">
+                <div className="flex items-center justify-between gap-4 px-5 py-4 text-left sm:px-6">
+                  <div className="text-base font-semibold text-white sm:text-lg">{index + 1}. {item.question}</div>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/50 bg-cyan-500/10 text-lg font-semibold text-cyan-300">+</span>
+                </div>
+                <div className="border-t border-slate-700 px-5 py-4 text-sm leading-7 text-slate-300 sm:px-6">
+                  {item.answer}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      }
     />
   )
 }
