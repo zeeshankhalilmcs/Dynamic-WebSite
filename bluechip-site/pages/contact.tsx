@@ -15,7 +15,7 @@ export default function Contact(){
               Share what you need and we’ll help shape a practical roadmap for your workflow, systems, and growth goals.
             </p>
             <div className="mt-8 rounded-[1.5rem] overflow-hidden border border-slate-200">
-              <img src="/images/stock/contact.jpg" alt="Business inquiry contact" className="h-64 w-full object-cover" />
+              <img src="/images/blog/team-meeting-image.png" alt="Business inquiry contact" className="h-64 w-full object-cover scale-110" />
             </div>
             <div className="mt-8 space-y-3 text-sm text-slate-600">
               <div className="rounded-2xl bg-slate-50 p-4">Response time: usually within one business day</div>

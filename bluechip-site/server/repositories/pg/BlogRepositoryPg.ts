@@ -9,7 +9,7 @@ function mapRow(row: BlogRepositoryRow): BlogPost {
       ? (row.published_at as { toISOString: () => string }).toISOString()
       : new Date().toISOString()
 
-  return {
+  const mappedPost: BlogPost = {
     slug: row.slug,
     title: row.title,
     excerpt: row.excerpt,
@@ -27,6 +27,10 @@ function mapRow(row: BlogRepositoryRow): BlogPost {
     seoDescription: row.seo_description ?? undefined,
     canonicalUrl: row.canonical_url ?? undefined,
   }
+
+  return Object.fromEntries(
+    Object.entries(mappedPost).filter(([, value]) => value !== undefined)
+  ) as BlogPost
 }
 
 export class BlogRepositoryPg implements BlogRepository {

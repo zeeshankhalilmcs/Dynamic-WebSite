@@ -23,6 +23,9 @@ export default function ContactForm(){
   const [verificationEnabled, setVerificationEnabled] = useState(false)
   const [otpEnabled, setOtpEnabled] = useState(false)
   const [otpSent, setOtpSent] = useState(false)
+  const [submissionComplete, setSubmissionComplete] = useState(false)
+
+  const successMessage = 'Thanks for reaching out! Our sales team will get in touch with you shortly to set up your consultation and help you with the next steps.'
 
   useEffect(() => {
     axios.get('/api/settings').then((res) => {
@@ -62,6 +65,7 @@ export default function ContactForm(){
       const response = await axios.post('/api/contact/request-otp', { email: values.email })
       if (response.data.success) {
         setOtpSent(true)
+        setSubmissionComplete(false)
         setSuccess('A verification code has been sent to your email.')
       }
     } catch {
@@ -83,11 +87,23 @@ export default function ContactForm(){
 
       const payload = { ...data }
       await axios.post('/api/contact', payload)
-      setSuccess('Thank you — we received your inquiry.')
+      setSubmissionComplete(true)
+      setSuccess(successMessage)
     }catch(err:any){
       const apiError = err?.response?.data
       setError(apiError?.reason ? `${apiError.error || 'Submission failed.'} (${apiError.reason})` : apiError?.error || 'Submission failed. Please try again later.')
     }
+  }
+
+  if (submissionComplete) {
+    return (
+      <div className="max-w-xl rounded-[1.5rem] border border-green-200 bg-green-50 p-8 text-center text-slate-800 shadow-sm">
+        <p className="text-lg font-semibold text-green-900">Thanks for reaching out!</p>
+        <p className="mt-3 text-base leading-7 text-slate-700">
+          Our sales team will get in touch with you shortly to set up your consultation and help you with the next steps.
+        </p>
+      </div>
+    )
   }
 
   return (

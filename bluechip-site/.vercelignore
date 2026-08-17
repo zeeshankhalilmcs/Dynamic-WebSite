@@ -6,5 +6,4 @@
 node_modules/.cache
 .next/cache
 
-# DO NOT ignore geoip-lite data files
-!node_modules/geoip-lite/data/**
+
