@@ -34,6 +34,11 @@ type SolutionPageLayoutProps = {
   ctaLabel: string
   ctaHref: string
   extraContent?: React.ReactNode
+  counterSectionLabel?: string
+  counterHeading?: string
+  branchesSectionLabel?: string
+  branchesHeading?: string
+  benefitsHeading?: string
 }
 
 export default function SolutionPageLayout({
@@ -49,6 +54,11 @@ export default function SolutionPageLayout({
   ctaLabel,
   ctaHref,
   extraContent,
+  counterSectionLabel = 'At the Counter',
+  counterHeading = 'Fast checkout that keeps operations smooth',
+  branchesSectionLabel = 'Across Branches',
+  branchesHeading = 'Visibility and control across every location',
+  benefitsHeading = 'Built to make retail simpler',
 }: SolutionPageLayoutProps) {
   // Determine if using workflow stages (counterFeatures + branchesFeatures) or flat features
   const hasWorkflowStages = counterFeatures && branchesFeatures
@@ -57,56 +67,56 @@ export default function SolutionPageLayout({
     <div className="min-h-screen bg-slate-50">
       <Header />
       <AnnouncementBar />
-      <main className="container py-16 lg:py-24">
-        <section className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm lg:p-12">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">{eyebrow}</p>
-              <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{title}</h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{subtitle}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href={ctaHref} className="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700">
-                  {ctaLabel}
-                </Link>
-                <Link href="/pricing" className="rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
-                  View pricing
-                </Link>
+      <main className="w-full">
+        <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32">
+          <div className="mx-auto w-full max-w-7xl">
+            <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">{eyebrow}</p>
+                <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">{title}</h1>
+                <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{subtitle}</p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link href={ctaHref} className="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700">
+                    {ctaLabel}
+                  </Link>
+                  <Link href="/pricing" className="rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
+                    View pricing
+                  </Link>
+                </div>
               </div>
-            </div>
 
-            <div className="rounded-[1.75rem] bg-slate-900 p-7 text-white shadow-lg">
-              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-300">Why teams choose it</div>
-              <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-200">
-                {heroBullets.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-indigo-400" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="rounded-[1.75rem] bg-slate-900 p-7 text-white shadow-lg">
+                <div className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-300">Why teams choose it</div>
+                <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-200">
+                  {heroBullets.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-indigo-400" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Features Section - Support both workflow stages and flat layout */}
         {hasWorkflowStages ? (
           <>
-            {/* Workflow Stage 1: Counter */}
-            <section className="mt-10">
-              <div className="mb-8">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">At the Counter</p>
-                <h2 className="mt-2 text-2xl font-bold text-slate-900">Fast checkout that keeps operations smooth</h2>
+            <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-slate-900 px-8 py-20 lg:px-12 lg:py-32">
+              <div className="mx-auto mb-10 w-full max-w-7xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">{counterSectionLabel}</p>
+                <h2 className="mt-3 text-3xl font-bold text-white">{counterHeading}</h2>
               </div>
-              <div className="grid gap-6 lg:grid-cols-2">
+              <div className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-2">
                 {counterFeatures!.map((feature, index) => (
-                  <div key={feature.title} className="rounded-[1.5rem] border border-slate-200 bg-white p-7 shadow-sm">
+                  <div key={feature.title} className="rounded-xl border border-cyan-500/30 bg-slate-800/60 p-6 backdrop-blur-sm transition hover:border-cyan-400/50 hover:bg-slate-800/80">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 text-lg font-bold text-indigo-600">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cyan-400/50 bg-cyan-500/20 text-lg font-bold text-cyan-300">
                         {index + 1}
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-slate-900">{feature.title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-slate-600">{feature.description}</p>
+                        <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-300">{feature.description}</p>
                       </div>
                     </div>
                   </div>
@@ -114,17 +124,16 @@ export default function SolutionPageLayout({
               </div>
             </section>
 
-            {/* Workflow Stage 2: Branches */}
-            <section className="mt-10">
-              <div className="mb-8">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">Across Branches</p>
-                <h2 className="mt-2 text-2xl font-bold text-slate-900">Visibility and control across every location</h2>
+            <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32">
+              <div className="mx-auto mb-10 w-full max-w-7xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">{branchesSectionLabel}</p>
+                <h2 className="mt-3 text-3xl font-bold text-slate-900">{branchesHeading}</h2>
               </div>
-              <div className="grid gap-6 lg:grid-cols-2">
+              <div className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-2">
                 {branchesFeatures!.map((feature, index) => (
-                  <div key={feature.title} className="rounded-[1.5rem] border border-slate-200 bg-white p-7 shadow-sm">
+                  <div key={feature.title} className="rounded-xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:border-indigo-200 hover:bg-white">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 text-lg font-bold text-indigo-600">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-indigo-200 bg-indigo-100 text-lg font-bold text-indigo-700">
                         {index + 3}
                       </div>
                       <div>
@@ -138,61 +147,68 @@ export default function SolutionPageLayout({
             </section>
           </>
         ) : (
-          /* Fallback: Regular features grid */
-          <section className="mt-10 grid gap-6 lg:grid-cols-2">
-            {allFeatures.map((feature, index) => (
-              <div key={feature.title} className="rounded-[1.5rem] border border-slate-200 bg-white p-7 shadow-sm">
-                <h2 className="text-xl font-semibold text-slate-900">{feature.title}</h2>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{feature.description}</p>
-              </div>
-            ))}
-          </section>
-        )}
-
-        {/* Benefits Section - Individual Cards */}
-        <section className="mt-10">
-          <div className="mb-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">Why it works</p>
-            <h2 className="mt-2 text-2xl font-bold text-slate-900">Built to make retail simpler</h2>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {benefits.map((benefit) => (
-              <div key={benefit.title} className="rounded-[1.5rem] border border-slate-200 bg-white p-7 shadow-sm">
-                {benefit.icon && <div className="text-3xl">{benefit.icon}</div>}
-                <h3 className="mt-3 text-lg font-semibold text-slate-900">{benefit.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Modules Section - 4-column grid with icons */}
-        {modules && modules.length > 0 && (
-          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm lg:p-10">
-            <div className="mb-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">Key modules</p>
-              <h2 className="mt-2 text-2xl font-bold text-slate-900">Everything you need, built in</h2>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {modules.map((module) => (
-                <div key={module.name} className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-center transition hover:bg-slate-100">
-                  {module.icon && <div className="text-2xl">{module.icon}</div>}
-                  <p className="mt-2 text-sm font-semibold text-slate-900">{module.name}</p>
+          <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-slate-900 px-8 py-20 lg:px-12 lg:py-32">
+            <div className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-3">
+              {allFeatures.map((feature, index) => (
+                <div key={feature.title} className="rounded-xl border border-cyan-500/30 bg-slate-800/60 p-6 backdrop-blur-sm transition hover:border-cyan-400/50 hover:bg-slate-800/80">
+                  {feature.icon && <div className="text-3xl">{feature.icon}</div>}
+                  <h3 className="mt-3 text-lg font-semibold text-white">{feature.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{feature.description}</p>
                 </div>
               ))}
             </div>
           </section>
         )}
 
-        {extraContent}
+        <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-slate-900 px-8 py-20 lg:px-12 lg:py-32">
+          <div className="mx-auto mb-10 w-full max-w-7xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">Why it works</p>
+            <h2 className="mt-3 text-3xl font-bold text-white">{benefitsHeading}</h2>
+          </div>
+          <div className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-3">
+            {benefits.map((benefit) => (
+              <div key={benefit.title} className="rounded-xl border border-cyan-500/30 bg-slate-800/60 p-6 backdrop-blur-sm transition hover:border-cyan-400/50 hover:bg-slate-800/80">
+                {benefit.icon && <div className="text-4xl">{benefit.icon}</div>}
+                <h3 className="mt-4 text-lg font-semibold text-white">{benefit.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-        <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm lg:p-10">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">Ready to discuss your next step?</p>
-              <h2 className="mt-2 text-2xl font-semibold text-slate-900">Let’s shape a solution around your team’s workflow and growth goals.</h2>
+        {modules && modules.length > 0 && (
+          <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32">
+            <div className="mx-auto mb-10 w-full max-w-7xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">Key modules</p>
+              <h2 className="mt-3 text-3xl font-bold text-slate-900">Everything you need, built in</h2>
             </div>
-            <Link href={ctaHref} className="rounded-full bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700">
+            <div className="mx-auto grid w-full max-w-7xl gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+              {modules.map((module) => (
+                <div key={module.name} className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center shadow-sm transition hover:border-indigo-200 hover:bg-white">
+                  {module.icon && <div className="text-3xl">{module.icon}</div>}
+                  <p className="mt-3 text-sm font-semibold text-slate-900">{module.name}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {extraContent && (
+          <div className="w-full bg-slate-900 px-8 py-20 lg:px-12 lg:py-32">
+            <div className="mx-auto w-full max-w-7xl">{extraContent}</div>
+          </div>
+        )}
+
+        <section className="flex min-h-screen w-full items-center justify-center rounded-none bg-slate-900 px-8 py-20 lg:px-12 lg:py-32">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">Ready to discuss your next step?</p>
+              <h2 className="mt-3 text-2xl font-semibold text-white">Ready to streamline your retail operations?</h2>
+              <p className="mt-3 max-w-2xl text-base leading-7 text-slate-300">
+                A modern retail management system for marts, supermarkets, and growing multi-store businesses, built to improve retail POS efficiency, inventory control, branch reporting, and operational visibility.
+              </p>
+            </div>
+            <Link href={ctaHref} className="whitespace-nowrap rounded-full bg-cyan-500 px-8 py-3 text-sm font-semibold text-slate-900 transition duration-300 hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/50">
               {ctaLabel}
             </Link>
           </div>
