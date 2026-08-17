@@ -30,7 +30,7 @@ export default function WhoWeAre() {
               <div className="flex items-start gap-3">
                 <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-cyan-500 text-sm font-bold text-white">✓</div>
                 <div>
-                  <p className="font-semibold text-slate-900">19+ Years of Expertise</p>
+                  <p className="font-semibold text-slate-900">2+ Decades of Expertise</p>
                   <p className="text-sm text-slate-600">Continuous innovation and practical business technology solutions</p>
                 </div>
               </div>

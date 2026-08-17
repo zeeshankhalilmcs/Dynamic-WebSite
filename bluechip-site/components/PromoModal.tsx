@@ -153,26 +153,30 @@ export default function PromoModal({ previewSettings, previewOpen, previewMode, 
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-3 py-4 sm:px-6 sm:py-8">
       <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm" onClick={() => close(true)} />
-      <div className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-[1.75rem] bg-white shadow-2xl">
-        <button onClick={() => close(true)} className="absolute right-4 top-4 z-10 rounded-full bg-white p-2 text-slate-600 shadow hover:bg-slate-50">
+      <div className="relative mx-auto w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-[1.75rem] bg-white shadow-2xl sm:max-h-[88vh]">
+        <button
+          onClick={() => close(true)}
+          className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg text-slate-600 shadow-md ring-1 ring-slate-200 transition hover:bg-slate-50 sm:right-4 sm:top-4"
+          aria-label="Close promo popup"
+        >
           ✕
         </button>
-        <div className="grid grid-cols-1 gap-0 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="p-8 lg:p-12">
+        <div className="grid grid-cols-1 gap-0 overflow-hidden lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="p-6 sm:p-8 lg:p-12">
             <div className="flex items-center gap-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700">DI</div>
-              <div className="text-sm font-semibold uppercase tracking-[0.35em] text-indigo-600">Digital Invoicing</div>
+              <div className="text-xs font-semibold uppercase tracking-[0.3em] text-indigo-600 sm:text-sm">Digital Invoicing</div>
             </div>
-            <h2 className="mt-6 text-3xl font-bold text-slate-900 sm:text-4xl">{settings.title}</h2>
-            <p className="mt-4 text-base leading-7 text-slate-600">{settings.subtitle}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href={settings.primaryCtaHref} className="rounded-full bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700">{settings.primaryCtaLabel}</a>
-              <a href={settings.secondaryCtaHref} className="rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">{settings.secondaryCtaLabel}</a>
+            <h2 className="mt-6 text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">{settings.title}</h2>
+            <p className="mt-4 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">{settings.subtitle}</p>
+            <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
+              <a href={settings.primaryCtaHref} className="rounded-full bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 sm:px-5">{settings.primaryCtaLabel}</a>
+              <a href={settings.secondaryCtaHref} className="rounded-full border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 sm:px-5">{settings.secondaryCtaLabel}</a>
             </div>
           </div>
-          <div className="relative min-h-[320px] overflow-hidden bg-slate-100">
+          <div className="relative min-h-[220px] overflow-hidden bg-slate-100 sm:min-h-[260px] lg:min-h-[320px]">
             <img src={settings.imagePath} alt="Promo" className="h-full w-full object-cover" />
           </div>
         </div>

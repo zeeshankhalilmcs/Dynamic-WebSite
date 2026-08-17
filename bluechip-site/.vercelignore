@@ -1,0 +1,10 @@
+# Ignore local files that shouldn't be deployed
+.git
+.gitignore
+.env.local
+.env.*.local
+node_modules/.cache
+.next/cache
+
+# DO NOT ignore geoip-lite data files
+!node_modules/geoip-lite/data/**

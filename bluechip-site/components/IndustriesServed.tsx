@@ -53,7 +53,7 @@ export default function IndustriesServed() {
               <h3 className="mt-4 text-xl font-semibold text-slate-900">{industry.name}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{industry.description}</p>
               <a
-                href="#"
+                href={`/contact?industry=${encodeURIComponent(industry.name)}`}
                 className="mt-4 inline-flex items-center text-sm font-semibold text-indigo-600 transition group-hover:text-indigo-700"
               >
                 Learn More

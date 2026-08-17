@@ -68,9 +68,9 @@ export default function AnnouncementBar() {
   return (
     <div className="border-y border-slate-200 bg-slate-900 text-white">
       <div className="overflow-hidden">
-        <div className="animate-marquee flex w-max items-center gap-8 py-3 whitespace-nowrap text-sm font-semibold uppercase tracking-[0.25em] text-slate-100 sm:text-base">
+        <div className="animate-marquee flex w-max min-w-max items-center gap-8 py-2 whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-100 sm:py-3 sm:text-sm lg:text-base">
           {marqueeItems.map((item, index) => (
-            <div key={`${item}-${index}`} className="flex items-center gap-8">
+            <div key={`${item}-${index}`} className="flex items-center gap-4 sm:gap-8">
               <span>{item}</span>
               <span className="text-indigo-300">•</span>
             </div>

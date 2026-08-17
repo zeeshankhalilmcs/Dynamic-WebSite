@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 type FormData = {
   firstName: string
@@ -15,7 +16,8 @@ type FormData = {
 }
 
 export default function ContactForm(){
-  const { register, handleSubmit, getValues, formState: { isSubmitting } } = useForm<FormData>({ defaultValues: { inquiryType: 'General' } })
+  const router = useRouter()
+  const { register, handleSubmit, getValues, setValue, formState: { isSubmitting } } = useForm<FormData>({ defaultValues: { inquiryType: 'General' } })
   const [success, setSuccess] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [verificationEnabled, setVerificationEnabled] = useState(false)
@@ -43,6 +45,16 @@ export default function ContactForm(){
       document.cookie = `${cookieName}=${sessionId}; path=/; max-age=${60 * 60 * 24 * 30}; samesite=lax`
     }
   }, [])
+
+  useEffect(() => {
+    const industry = typeof router.query.industry === 'string' ? router.query.industry : ''
+    if (!industry) return
+
+    const message = `I am interested in learning more about ${industry} from BlueChip Solution. I would like to understand the available features, pricing, implementation process, and how the solution can help improve my business operations. Please contact me to discuss my requirements and recommend a suitable solution for my business.`
+
+    setValue('message', message)
+    setValue('inquiryType', 'Quote')
+  }, [router.query.industry, setValue])
 
   async function requestOtp() {
     const values = getValues()
