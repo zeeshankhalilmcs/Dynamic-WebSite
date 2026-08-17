@@ -38,8 +38,8 @@ export default function Header() {
             </button>
             <div className={`absolute left-0 top-full mt-3 min-w-[220px] rounded-2xl border border-slate-200 bg-white p-3 shadow-xl ${isSolutionsOpen ? 'block' : 'hidden'}`}>
               <Link href="/mart-retail-software" className="mt-1 block rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-900">Mart / Retail Software</Link>
-              <Link href="/hospital-management-software" className="block rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-900">Hospital Management Software</Link>
-              <Link href="/white-label-brand-software" className="mt-1 block rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-900">White Label Brand Software</Link>
+              {/* <Link href="/hospital-management-software" className="block rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-900">Hospital Management Software</Link> */}
+              {/* <Link href="/white-label-brand-software" className="mt-1 block rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-900">White Label Brand Software</Link> */}
             </div>
           </div>
           <Link href="/pricing" className="transition hover:text-slate-900">Pricing</Link>

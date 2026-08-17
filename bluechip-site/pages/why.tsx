@@ -48,7 +48,7 @@ export default function Why() {
       <Header />
       <main className="container py-16 lg:py-24">
         <section className="glass-card overflow-hidden border-slate-200/80 bg-white/80 p-0">
-          <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="grid gap-0 lg:grid-cols-[1.02fr_0.98fr] lg:items-stretch">
             <div className="p-8 lg:p-12">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Why clients choose us</p>
               <h1 className="mt-4 text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
@@ -71,10 +71,14 @@ export default function Why() {
             </div>
 
             <div className="bg-slate-900 p-3">
-              <div className="relative h-full min-h-[420px] overflow-hidden rounded-[1.5rem]">
-                <img src="/images/stock/hero.jpg" alt="A professional team planning technology solutions" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/20 to-transparent" />
-                <div className="absolute inset-x-6 bottom-6 rounded-[1.25rem] border border-white/20 bg-white/10 p-6 text-white backdrop-blur">
+              <div className="relative h-full min-h-[420px] overflow-hidden rounded-[1.75rem]">
+                <img
+                  src="/images/blog/why-about-hero-image.jpg"
+                  alt="BlueChip Solution team planning technology strategy"
+                  className="h-full w-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/25 to-transparent" />
+                <div className="absolute inset-x-6 bottom-6 rounded-[1.25rem] border border-white/20 bg-white/10 p-6 text-white backdrop-blur-md">
                   <div className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300">Delivery approach</div>
                   <div className="mt-4 space-y-3">
                     {steps.map((step, index) => (
