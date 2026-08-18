@@ -5,6 +5,7 @@ import Script from 'next/script'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import ChatWidget from '../components/ChatWidget'
+import ConsentBanner from '../components/ConsentBanner'
 import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton'
 
 const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || 'G-ZPJ6775HEX'
@@ -71,6 +72,7 @@ export default function App({ Component, pageProps }: AppProps) {
       )}
 
       <Component {...pageProps} />
+      <ConsentBanner />
       <WhatsAppFloatingButton />
       <ChatWidget />
     </>

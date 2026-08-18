@@ -45,7 +45,7 @@ export default function Header() {
               <span className="text-base">+</span>
             </button>
             <div className={`absolute left-0 top-full mt-3 min-w-[220px] rounded-2xl border border-slate-200 bg-white p-3 shadow-xl ${isSolutionsOpen ? 'block' : 'hidden'}`}>
-              <Link href="/mart-retail-software" className="mt-1 block rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-900">Mart / Retail Software</Link>
+              <Link href="/mart-retail-software" className="mt-1 block rounded-xl px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-900">POS Software</Link>
             </div>
           </div>
           {navLinks.map((link) => (
@@ -94,7 +94,7 @@ export default function Header() {
             {isSolutionsOpen && (
               <div className="mt-2 space-y-1 transition-all duration-200">
                 <Link href="/mart-retail-software" onClick={() => setIsMobileMenuOpen(false)} className="block rounded-lg px-2 py-2 text-slate-600 hover:bg-white hover:text-slate-900">
-                  Mart / Retail Software
+                  POS Software
                 </Link>
               </div>
             )}
