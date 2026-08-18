@@ -27,6 +27,7 @@ type SolutionPageLayoutProps = {
   eyebrow: string
   title: string
   subtitle: string
+  brightHeroSubtitle?: boolean
   heroBullets: string[]
   heroBackgroundImage?: string
   features?: FeatureItem[]
@@ -43,6 +44,7 @@ type SolutionPageLayoutProps = {
   counterSectionLabel?: string
   counterHeading?: string
   branchesSectionLabel?: string
+  preserveBranchesSectionLabelCase?: boolean
   branchesHeading?: string
   benefitsHeading?: string
 }
@@ -51,6 +53,7 @@ export default function SolutionPageLayout({
   eyebrow,
   title,
   subtitle,
+  brightHeroSubtitle = false,
   heroBullets,
   heroBackgroundImage,
   features,
@@ -67,6 +70,7 @@ export default function SolutionPageLayout({
   counterSectionLabel = 'At the Counter',
   counterHeading = 'Fast checkout that keeps operations smooth',
   branchesSectionLabel = 'Across Branches',
+  preserveBranchesSectionLabelCase = false,
   branchesHeading = 'Visibility and control across every location',
   benefitsHeading = 'Built to make retail simpler',
 }: SolutionPageLayoutProps) {
@@ -101,7 +105,7 @@ export default function SolutionPageLayout({
               <div>
                 <p className="inline-flex rounded-full bg-cyan-400 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-950 shadow-lg shadow-cyan-900/20 sm:text-xs sm:tracking-[0.2em]">{eyebrow}</p>
                 <h1 className="mt-4 text-2xl font-bold tracking-tight text-white drop-shadow-md sm:text-3xl lg:text-5xl">{title}</h1>
-                <p className="mt-5 max-w-2xl text-base leading-7 text-slate-100 drop-shadow-sm sm:text-lg sm:leading-8">{subtitle}</p>
+                <p className={`mt-5 max-w-2xl text-base leading-7 drop-shadow-sm sm:text-lg sm:leading-8 ${brightHeroSubtitle ? 'text-white' : 'text-slate-100'}`}>{subtitle}</p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   {isContactCta ? (
                     <button
@@ -165,7 +169,7 @@ export default function SolutionPageLayout({
               <div className="mx-auto w-full max-w-7xl">
                 <div className="grid items-center gap-6 sm:gap-10 lg:grid-cols-[1.1fr_0.9fr]">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600 sm:text-sm">{branchesSectionLabel}</p>
+                    <p className={`text-xs font-semibold tracking-[0.22em] text-indigo-600 sm:text-sm ${preserveBranchesSectionLabelCase ? '' : 'uppercase'}`}>{branchesSectionLabel}</p>
                     <h2 className="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">{branchesHeading}</h2>
 
                     <div className="mt-6 grid gap-4 sm:grid-cols-2 sm:mt-8">
@@ -254,15 +258,15 @@ export default function SolutionPageLayout({
                             {index + 1}
                           </span>
                           <span className="h-px flex-1 bg-slate-200" />
+                          {module.icon && <span className="text-2xl leading-none">{module.icon}</span>}
                         </div>
-                        {module.icon && <div className="text-2xl">{module.icon}</div>}
-                        <p className="mt-3 text-sm font-semibold text-slate-900">{module.name}</p>
+                        <p className="text-sm font-semibold text-slate-900">{module.name}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="relative">
+                <div className="relative lg:translate-y-8">
                   <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100 shadow-[0_25px_60px_-30px_rgba(15,23,42,0.35)]">
                     <img
                       src="/images/blog/key-modules.jpg"
