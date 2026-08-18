@@ -1,9 +1,23 @@
+import fs from 'fs'
+import path from 'path'
+
 let geoip: { lookup: (ip: string) => { country?: string | null; region?: string | null; city?: string | null } | null } | null = null
 
 try {
-  geoip = require('geoip-lite')
+  const candidateDirs = [
+    path.join(process.cwd(), 'geoip-data'),
+    path.join(process.cwd(), 'node_modules', 'geoip-lite', 'data'),
+  ]
+
+  const dataFile = candidateDirs
+    .map((dir) => path.join(dir, 'geoip-country.dat'))
+    .find((file) => fs.existsSync(file))
+
+  if (dataFile) {
+    process.env.GEODATADIR = path.dirname(dataFile)
+    geoip = require('geoip-lite')
+  }
 } catch (error) {
-  console.warn('GeoIP library unavailable in this environment:', error)
   geoip = null
 }
 
