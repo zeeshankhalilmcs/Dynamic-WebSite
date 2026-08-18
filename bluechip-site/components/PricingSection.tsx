@@ -207,7 +207,7 @@ export default function PricingSection({ content }: PricingSectionProps) {
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600 sm:text-sm">Compare plans</p>
               <h3 className="mt-2 text-xl font-semibold text-slate-900 sm:text-2xl">{content.comparisonTitle}</h3>
             </div>
-            <p className="max-w-xl text-sm leading-7 text-slate-600">Each plan is designed around a different growth stage, ranging from simpler day-to-day operations to strategic multi-branch delivery.</p>
+            <p className="max-w-xl text-sm leading-7 text-slate-600">Each plan is designed around a different Growth Stage, ranging from simpler day-to-day Operations to Strategic Multi-Branch delivery.</p>
           </div>
 
           <div className="mt-8 overflow-x-auto rounded-[1.5rem] border border-slate-200">
@@ -232,14 +232,14 @@ export default function PricingSection({ content }: PricingSectionProps) {
 
         <div className="mt-16 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <div className="rounded-[2rem] border border-slate-200 bg-slate-900 p-8 text-white shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300">Why teams choose us</p>
-            <h3 className="mt-3 text-2xl font-semibold">A practical path from rollout to ongoing support.</h3>
-            <p className="mt-4 text-sm leading-7 text-slate-300">We help align the software with real operations, so teams can move quickly without sacrificing reliability or clarity.</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-300">Why Teams choose us</p>
+            <h3 className="mt-3 text-2xl font-semibold">A practical path from rollout to Ongoing Support.</h3>
+            <p className="mt-4 text-sm leading-7 text-slate-300">We help align the software with Real Operations, so Teams can move quickly without sacrificing reliability or clarity.</p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl bg-white/10 p-4">Implementation guidance</div>
-              <div className="rounded-2xl bg-white/10 p-4">Operational continuity</div>
-              <div className="rounded-2xl bg-white/10 p-4">Scalable support</div>
-              <div className="rounded-2xl bg-white/10 p-4">Clear communication</div>
+              <div className="rounded-2xl bg-white/10 p-4">Implementation Guidance</div>
+              <div className="rounded-2xl bg-white/10 p-4">Operational Continuity</div>
+              <div className="rounded-2xl bg-white/10 p-4">Scalable Support</div>
+              <div className="rounded-2xl bg-white/10 p-4">Clear Communication</div>
             </div>
           </div>
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">

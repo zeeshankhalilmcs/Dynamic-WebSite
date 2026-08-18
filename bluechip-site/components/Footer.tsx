@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Footer(){
   return (
-    <footer className="mt-16 border-t border-slate-200 bg-slate-50/80 py-10">
+    <footer className="border-t border-slate-200 bg-slate-50/80 py-10">
       <div className="container grid gap-8 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
         <div>
           <div className="text-lg font-semibold text-slate-900">BlueChip Solution</div>

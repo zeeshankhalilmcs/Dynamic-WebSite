@@ -14,7 +14,7 @@ export default function Contact(){
         <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-10">
           <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:p-8 lg:rounded-[2rem]">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600 sm:text-sm">Let’s talk</p>
-            <h1 className="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl">Start a conversation with our team.</h1>
+            <h1 className="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl">Start a Conversation with Team.</h1>
             <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
               Share what you need and we’ll help shape a practical roadmap for your workflow, systems, and growth goals.
             </p>

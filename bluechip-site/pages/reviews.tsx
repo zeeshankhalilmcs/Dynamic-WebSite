@@ -26,7 +26,7 @@ const testimonials = [
   },
 ]
 
-const highlights = ['Seamless branch coordination', 'Clear reporting at every level', 'Reliable support after launch']
+const highlights = ['Seamless Branch Coordination', 'Clear Reporting at Every Level', 'Reliable Support After Launch']
 
 export default function Reviews() {
   return (
@@ -38,10 +38,10 @@ export default function Reviews() {
             <div className="p-8 lg:p-12">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Reviews & case studies</p>
               <h1 className="mt-4 text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
-                Executive-level feedback from teams that needed stronger control and smoother daily operations.
+                Executive-Level feedback from Teams.
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-                From retail and hospitality to pharmacy and fuel, our work has helped clients simplify control, improve uptime, and create a better experience for staff and customers alike.
+                From Retail and Hospitality to Pharmacy and Fuel, our work has helped clients simplify control, improve uptime, and create a better experience for staff and customers alike.
               </p>
 
               <div className="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-50/80 p-6">
@@ -62,7 +62,7 @@ export default function Reviews() {
             </div>
 
             <div className="bg-slate-900 p-3">
-              <img src="/images/stock/contact.jpg" alt="Professional support environment" className="h-full min-h-[360px] w-full rounded-[1.5rem] object-cover" />
+              <img src="/images/stock/contact.jpg" alt="Professional Support Environment" className="h-full min-h-[360px] w-full rounded-[1.5rem] object-cover" />
             </div>
           </div>
         </section>

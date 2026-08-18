@@ -42,13 +42,13 @@ export default function Hero(){
       <div className="container relative grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
         <div className="max-w-2xl">
           <div className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-slate-200 sm:text-sm">
-            Trusted by growth-focused businesses
+            Trusted by Growth-Focused Businesses
           </div>
           <h1 className="mt-6 text-3xl font-black leading-tight sm:text-4xl lg:text-6xl">
-            Technology that feels like an extension of your business.
+            Technology that feels like an extension of your Business.
           </h1>
           <p className="mt-5 max-w-xl text-base text-slate-300 sm:text-lg lg:text-xl">
-            We design resilient POS, ERP, and infrastructure systems that help teams move faster, serve customers better, and scale confidently.
+            We design resilient POS, ERP, and Infrastructure Systems that help teams move faster, serve customers better, and scale confidently.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a href="/contact" className="rounded-full bg-white px-5 py-3 text-center font-semibold text-slate-900 transition duration-300 hover:-translate-y-0.5 hover:bg-slate-100 hover:shadow-lg cursor-pointer">Book a Consultation</a>
