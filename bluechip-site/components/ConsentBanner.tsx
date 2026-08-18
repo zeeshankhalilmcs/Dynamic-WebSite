@@ -68,7 +68,7 @@ export default function ConsentBanner() {
   }
 
   return (
-    <div className="fixed bottom-4 left-1/2 z-40 w-[calc(100%-1rem)] max-w-[1040px] -translate-x-1/2 rounded-[18px] border border-cyan-500/30 bg-slate-900/95 shadow-[0_16px_40px_rgba(6,182,212,0.12)] backdrop-blur-sm sm:bottom-5">
+    <div className="fixed bottom-4 left-1/2 z-[60] w-[calc(100%-1rem)] max-w-[1040px] -translate-x-1/2 rounded-[18px] border border-cyan-500/30 bg-slate-900/95 pb-[env(safe-area-inset-bottom)] shadow-[0_16px_40px_rgba(6,182,212,0.12)] backdrop-blur-sm sm:bottom-5 sm:pb-0">
       <div className="flex flex-col gap-3 px-3 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5 sm:py-4">
         <div className="flex min-w-0 items-start gap-3 text-sm leading-6 text-slate-200 sm:text-[15px]">
           <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-700 bg-slate-800 text-base sm:h-8 sm:w-8">
