@@ -197,6 +197,7 @@ export default function MartRetailSoftwarePage() {
       modules={modules}
       ctaLabel="Discuss your retail needs"
       ctaHref="/contact"
+      contentSizedCta
       afterCtaContent={<Clients />}
       afterClientsContent={
         <div className="mb-10">
@@ -205,15 +206,16 @@ export default function MartRetailSoftwarePage() {
 
           <div className="mt-10 space-y-4">
             {faqItems.map((item, index) => (
-              <div key={item.question} className="overflow-hidden rounded-2xl border border-slate-700 bg-slate-800/60">
-                <div className="flex items-center justify-between gap-4 px-5 py-4 text-left sm:px-6">
+              <details key={item.question} className="group overflow-hidden rounded-2xl border border-slate-700 bg-slate-800/60">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left sm:px-6">
                   <div className="text-base font-semibold text-white sm:text-lg">{index + 1}. {item.question}</div>
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/50 bg-cyan-500/10 text-lg font-semibold text-cyan-300">+</span>
-                </div>
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cyan-400/50 bg-cyan-500/10 text-lg font-semibold text-cyan-300 group-open:hidden">+</span>
+                  <span className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cyan-400/50 bg-cyan-500/10 text-lg font-semibold text-cyan-300 group-open:flex">−</span>
+                </summary>
                 <div className="border-t border-slate-700 px-5 py-4 text-sm leading-7 text-slate-300 sm:px-6">
                   {item.answer}
                 </div>
-              </div>
+              </details>
             ))}
           </div>
         </div>

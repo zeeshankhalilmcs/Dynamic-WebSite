@@ -36,6 +36,7 @@ type SolutionPageLayoutProps = {
   modules?: ModuleItem[]
   ctaLabel: string
   ctaHref: string
+  contentSizedCta?: boolean
   extraContent?: React.ReactNode
   afterCtaContent?: React.ReactNode
   afterClientsContent?: React.ReactNode
@@ -59,6 +60,7 @@ export default function SolutionPageLayout({
   modules,
   ctaLabel,
   ctaHref,
+  contentSizedCta = false,
   extraContent,
   afterCtaContent,
   afterClientsContent,
@@ -291,7 +293,7 @@ export default function SolutionPageLayout({
           </div>
         )}
 
-        <section className="flex min-h-[50vh] w-full items-center justify-center rounded-none bg-slate-900 px-4 py-14 sm:px-8 sm:py-20 lg:min-h-screen lg:px-12 lg:py-32">
+        <section className={`flex ${contentSizedCta ? '' : 'min-h-[50vh] lg:min-h-screen'} w-full items-center justify-center rounded-none bg-slate-900 px-4 py-14 sm:px-8 sm:py-20 lg:px-12 lg:py-32`}>
           <div className="mx-auto flex w-full max-w-7xl flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400 sm:text-sm">Ready to discuss your next step?</p>
