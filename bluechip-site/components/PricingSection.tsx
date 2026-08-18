@@ -73,16 +73,16 @@ export default function PricingSection({ content }: PricingSectionProps) {
 
   return (
     <section id="pricing" className="scroll-mt-24 py-16 lg:py-24">
-      <div className="mx-auto w-full max-w-screen-xl px-4">
+      <div className="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Pricing</p>
-          <h2 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">{content.heroTitle}</h2>
-          <p className="mt-4 text-lg leading-8 text-slate-600">{content.heroSubtitle}</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href={content.heroCtaHref} className="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-indigo-600 sm:text-sm">Pricing</p>
+          <h2 className="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">{content.heroTitle}</h2>
+          <p className="mt-4 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">{content.heroSubtitle}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+            <Link href={content.heroCtaHref} className="w-full rounded-full bg-slate-900 px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-slate-700 sm:w-auto">
               {content.heroCtaLabel}
             </Link>
-            <a href="mailto:hello@bluechipsolution.net" className="rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-900">
+            <a href="mailto:hello@bluechipsolution.net" className="w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:text-slate-900 sm:w-auto">
               Talk to our team
             </a>
           </div>
@@ -201,30 +201,32 @@ export default function PricingSection({ content }: PricingSectionProps) {
           billingMode={selectedPlan?.billingMode}
         />
 
-        <div className="mt-16 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm lg:p-10">
+        <div className="mt-16 rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm sm:p-8 lg:p-10">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Compare plans</p>
-              <h3 className="mt-2 text-2xl font-semibold text-slate-900">{content.comparisonTitle}</h3>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600 sm:text-sm">Compare plans</p>
+              <h3 className="mt-2 text-xl font-semibold text-slate-900 sm:text-2xl">{content.comparisonTitle}</h3>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-600">Each plan is designed around a different growth stage, ranging from simpler day-to-day operations to strategic multi-branch delivery.</p>
           </div>
 
-          <div className="mt-8 overflow-hidden rounded-[1.5rem] border border-slate-200">
-            <div className="grid grid-cols-[1.2fr_repeat(4,minmax(0,1fr))] bg-slate-50 text-sm font-semibold text-slate-700">
-              <div className="px-4 py-4">Capability</div>
-              {content.plans.map((plan) => (
-                <div key={`${plan.id}-header`} className="px-4 py-4 text-center">{plan.name}</div>
-              ))}
-            </div>
-            {content.comparisonFeatures.map((feature) => (
-              <div key={feature.name} className="grid grid-cols-[1.2fr_repeat(4,minmax(0,1fr))] border-t border-slate-200 text-sm text-slate-600">
-                <div className="px-4 py-4 font-medium text-slate-700">{feature.name}</div>
-                {feature.values.map((value, index) => (
-                  <div key={`${feature.name}-${index}`} className="px-4 py-4 text-center">{value}</div>
+          <div className="mt-8 overflow-x-auto rounded-[1.5rem] border border-slate-200">
+            <div className="min-w-[760px]">
+              <div className="grid grid-cols-[1.2fr_repeat(4,minmax(0,1fr))] bg-slate-50 text-sm font-semibold text-slate-700">
+                <div className="px-4 py-4">Capability</div>
+                {content.plans.map((plan) => (
+                  <div key={`${plan.id}-header`} className="px-4 py-4 text-center">{plan.name}</div>
                 ))}
               </div>
-            ))}
+              {content.comparisonFeatures.map((feature) => (
+                <div key={feature.name} className="grid grid-cols-[1.2fr_repeat(4,minmax(0,1fr))] border-t border-slate-200 text-sm text-slate-600">
+                  <div className="px-4 py-4 font-medium text-slate-700">{feature.name}</div>
+                  {feature.values.map((value, index) => (
+                    <div key={`${feature.name}-${index}`} className="px-4 py-4 text-center">{value}</div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

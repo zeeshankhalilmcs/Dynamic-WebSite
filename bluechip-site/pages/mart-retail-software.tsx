@@ -221,3 +221,7 @@ export default function MartRetailSoftwarePage() {
     />
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}

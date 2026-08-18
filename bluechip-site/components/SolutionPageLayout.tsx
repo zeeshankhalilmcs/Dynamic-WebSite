@@ -79,9 +79,9 @@ export default function SolutionPageLayout({
     <div className="min-h-screen bg-slate-50">
       <Header />
       <AnnouncementBar />
-      <main className="w-full">
+      <main className="w-full overflow-x-hidden">
         <section
-          className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32"
+          className="relative flex min-h-[70vh] w-full flex-col justify-center overflow-hidden rounded-none bg-white px-4 py-14 sm:px-8 sm:py-20 lg:min-h-screen lg:px-12 lg:py-32"
           style={
             heroBackgroundImage
               ? {
@@ -97,30 +97,30 @@ export default function SolutionPageLayout({
           <div className="relative mx-auto w-full max-w-7xl">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
               <div>
-                <p className="inline-flex rounded-full bg-cyan-400 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-950 shadow-lg shadow-cyan-900/20">{eyebrow}</p>
-                <h1 className="mt-4 text-3xl font-bold tracking-tight text-white drop-shadow-md sm:text-4xl lg:text-5xl">{title}</h1>
-                <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-100 drop-shadow-sm">{subtitle}</p>
-                <div className="mt-8 flex flex-wrap gap-3">
+                <p className="inline-flex rounded-full bg-cyan-400 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-950 shadow-lg shadow-cyan-900/20 sm:text-xs sm:tracking-[0.2em]">{eyebrow}</p>
+                <h1 className="mt-4 text-2xl font-bold tracking-tight text-white drop-shadow-md sm:text-3xl lg:text-5xl">{title}</h1>
+                <p className="mt-5 max-w-2xl text-base leading-7 text-slate-100 drop-shadow-sm sm:text-lg sm:leading-8">{subtitle}</p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   {isContactCta ? (
                     <button
                       type="button"
                       onClick={() => setIsWhatsAppModalOpen(true)}
-                      className="rounded-full border border-cyan-400/50 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-slate-900/60"
+                      className="w-full rounded-full border border-cyan-400/50 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-slate-900/60 sm:w-auto"
                     >
                       {ctaLabel}
                     </button>
                   ) : (
-                    <Link href={ctaHref} className="rounded-full border border-cyan-400/50 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-slate-900/60">
+                    <Link href={ctaHref} className="w-full rounded-full border border-cyan-400/50 bg-slate-900/40 px-5 py-3 text-center text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-slate-900/60 sm:w-auto">
                       {ctaLabel}
                     </Link>
                   )}
-                  <Link href="/pricing" className="rounded-full border border-cyan-400/50 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-slate-900/60">
+                  <Link href="/pricing" className="w-full rounded-full border border-cyan-400/50 bg-slate-900/40 px-5 py-3 text-center text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-slate-900/60 sm:w-auto">
                     View pricing
                   </Link>
                 </div>
               </div>
 
-              <div className="rounded-[1.75rem] bg-slate-900/90 p-7 text-white shadow-lg backdrop-blur-sm">
+              <div className="rounded-[1.5rem] bg-slate-900/90 p-5 text-white shadow-lg backdrop-blur-sm sm:rounded-[1.75rem] sm:p-7">
                 <div className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-300">Why teams choose it</div>
                 <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-200">
                   {heroBullets.map((item) => (
@@ -137,12 +137,12 @@ export default function SolutionPageLayout({
 
         {hasWorkflowStages ? (
           <>
-            <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-slate-900 px-8 py-20 lg:px-12 lg:py-32">
-              <div className="mx-auto mb-10 w-full max-w-7xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">{counterSectionLabel}</p>
-                <h2 className="mt-3 text-3xl font-bold text-white">{counterHeading}</h2>
+            <section className="flex min-h-[60vh] w-full flex-col justify-center rounded-none bg-slate-900 px-4 py-14 sm:px-8 sm:py-20 lg:min-h-screen lg:px-12 lg:py-32">
+              <div className="mx-auto mb-8 w-full max-w-7xl sm:mb-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400 sm:text-sm">{counterSectionLabel}</p>
+                <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl lg:text-4xl">{counterHeading}</h2>
               </div>
-              <div className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-2">
+              <div className="mx-auto grid w-full max-w-7xl gap-4 sm:gap-6 lg:grid-cols-2">
                 {counterFeatures!.map((feature, index) => (
                   <div key={feature.title} className="rounded-xl border border-cyan-500/30 bg-slate-800/60 p-6 backdrop-blur-sm transition hover:border-cyan-400/50 hover:bg-slate-800/80">
                     <div className="flex items-start gap-4">
@@ -159,14 +159,14 @@ export default function SolutionPageLayout({
               </div>
             </section>
 
-            <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32">
+            <section className="flex min-h-[60vh] w-full flex-col justify-center rounded-none bg-white px-4 py-14 sm:px-8 sm:py-20 lg:min-h-screen lg:px-12 lg:py-32">
               <div className="mx-auto w-full max-w-7xl">
-                <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+                <div className="grid items-center gap-6 sm:gap-10 lg:grid-cols-[1.1fr_0.9fr]">
                   <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">{branchesSectionLabel}</p>
-                    <h2 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">{branchesHeading}</h2>
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600 sm:text-sm">{branchesSectionLabel}</p>
+                    <h2 className="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">{branchesHeading}</h2>
 
-                    <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                    <div className="mt-6 grid gap-4 sm:grid-cols-2 sm:mt-8">
                       {branchesFeatures!.slice(0, 6).map((feature, index) => (
                         <div key={feature.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-indigo-200 hover:bg-white">
                           <div className="mb-3 flex items-center justify-between gap-3">
@@ -237,14 +237,14 @@ export default function SolutionPageLayout({
         </section>
 
         {modules && modules.length > 0 && (
-          <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-white px-8 py-20 lg:px-12 lg:py-32">
+          <section className="flex min-h-[60vh] w-full flex-col justify-center rounded-none bg-white px-4 py-14 sm:px-8 sm:py-20 lg:min-h-screen lg:px-12 lg:py-32">
             <div className="mx-auto w-full max-w-7xl">
-              <div className="grid items-center gap-8 lg:grid-cols-[1.08fr_0.92fr]">
+              <div className="grid items-center gap-6 sm:gap-8 lg:grid-cols-[1.08fr_0.92fr]">
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-indigo-600">Key modules</p>
-                  <h2 className="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">Everything you need, built in</h2>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600 sm:text-sm">Key modules</p>
+                  <h2 className="mt-3 text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">Everything you need, built in</h2>
 
-                  <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                  <div className="mt-6 grid gap-4 sm:grid-cols-2 sm:mt-8">
                     {modules.slice(0, 8).map((module, index) => (
                       <div key={module.name} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm transition hover:border-indigo-200 hover:bg-white hover:shadow-md">
                         <div className="mb-3 flex items-center justify-between gap-3">
@@ -286,17 +286,17 @@ export default function SolutionPageLayout({
         )}
 
         {extraContent && (
-          <div className="w-full bg-slate-900 px-8 py-20 lg:px-12 lg:py-32">
+          <div className="w-full bg-slate-900 px-4 py-14 sm:px-8 sm:py-20 lg:px-12 lg:py-32">
             <div className="mx-auto w-full max-w-7xl">{extraContent}</div>
           </div>
         )}
 
-        <section className="flex min-h-screen w-full items-center justify-center rounded-none bg-slate-900 px-8 py-20 lg:px-12 lg:py-32">
+        <section className="flex min-h-[50vh] w-full items-center justify-center rounded-none bg-slate-900 px-4 py-14 sm:px-8 sm:py-20 lg:min-h-screen lg:px-12 lg:py-32">
           <div className="mx-auto flex w-full max-w-7xl flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-400">Ready to discuss your next step?</p>
-              <h2 className="mt-3 text-2xl font-semibold text-white">Ready to streamline your retail operations?</h2>
-              <p className="mt-3 max-w-2xl text-base leading-7 text-slate-300">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400 sm:text-sm">Ready to discuss your next step?</p>
+              <h2 className="mt-3 text-xl font-semibold text-white sm:text-2xl">Ready to streamline your retail operations?</h2>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
                 A modern retail management system for marts, supermarkets, and growing multi-store businesses, built to improve retail POS efficiency, inventory control, branch reporting, and operational visibility.
               </p>
             </div>
@@ -304,12 +304,12 @@ export default function SolutionPageLayout({
               <button
                 type="button"
                 onClick={() => setIsWhatsAppModalOpen(true)}
-                className="whitespace-nowrap rounded-full bg-cyan-500 px-8 py-3 text-sm font-semibold text-slate-900 transition duration-300 hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/50"
+                className="w-full whitespace-nowrap rounded-full bg-cyan-500 px-8 py-3 text-sm font-semibold text-slate-900 transition duration-300 hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/50 sm:w-auto"
               >
                 {ctaLabel}
               </button>
             ) : (
-              <Link href={ctaHref} className="whitespace-nowrap rounded-full bg-cyan-500 px-8 py-3 text-sm font-semibold text-slate-900 transition duration-300 hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/50">
+              <Link href={ctaHref} className="w-full whitespace-nowrap rounded-full bg-cyan-500 px-8 py-3 text-center text-sm font-semibold text-slate-900 transition duration-300 hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/50 sm:w-auto">
                 {ctaLabel}
               </Link>
             )}
@@ -317,13 +317,13 @@ export default function SolutionPageLayout({
         </section>
 
         {afterCtaContent && (
-          <div className="w-full bg-white px-8 py-20 lg:px-12 lg:py-24">
+          <div className="w-full bg-white px-4 py-14 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
             <div className="mx-auto w-full max-w-7xl">{afterCtaContent}</div>
           </div>
         )}
 
         {afterClientsContent && (
-          <section className="flex min-h-screen w-full flex-col justify-center rounded-none bg-slate-900 px-8 py-20 lg:px-12 lg:py-32">
+          <section className="flex min-h-[60vh] w-full flex-col justify-center rounded-none bg-slate-900 px-4 py-14 sm:px-8 sm:py-20 lg:min-h-screen lg:px-12 lg:py-32">
             <div className="mx-auto w-full max-w-7xl">{afterClientsContent}</div>
           </section>
         )}

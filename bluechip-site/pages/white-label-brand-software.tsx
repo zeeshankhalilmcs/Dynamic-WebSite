@@ -52,3 +52,7 @@ export default function WhiteLabelBrandSoftwarePage() {
     />
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}

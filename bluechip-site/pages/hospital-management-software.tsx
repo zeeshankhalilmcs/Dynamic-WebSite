@@ -85,3 +85,7 @@ export default function HospitalManagementSoftwarePage() {
     />
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}

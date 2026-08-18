@@ -56,3 +56,7 @@ export default function Home(){
     </div>
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}

@@ -60,3 +60,7 @@ export default function PricingPage() {
     </div>
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}

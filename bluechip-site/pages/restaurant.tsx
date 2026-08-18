@@ -126,31 +126,31 @@ export default function Restaurant() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <main>
+      <main className="overflow-x-hidden">
         {/* Hero Section */}
-        <section className="border-b border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-slate-100/50 py-20 lg:py-28">
-          <div className="container">
+        <section className="border-b border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-slate-100/50 px-4 py-12 sm:px-6 lg:px-8 lg:py-28">
+          <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-sm font-medium text-amber-700">
+              <div className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-medium text-amber-700 sm:text-sm">
                 Restaurant Management Excellence
               </div>
-              <h1 className="mt-6 text-4xl font-black leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              <h1 className="mt-6 text-3xl font-black leading-tight text-slate-900 sm:text-4xl lg:text-6xl">
                 Restaurant Management Reimagined
               </h1>
-              <p className="mt-5 max-w-2xl text-lg text-slate-600 sm:text-xl">
+              <p className="mt-5 max-w-2xl text-base text-slate-600 sm:text-lg lg:text-xl">
                 Empower your restaurant with intelligent POS technology that streamlines operations, reduces order times, and drives revenue growth—from takeout to fine dining.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href="/contact" className="rounded-full bg-amber-500 px-6 py-3 font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-amber-600 hover:shadow-lg">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a href="/contact" className="w-full rounded-full bg-amber-500 px-6 py-3 text-center font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-amber-600 hover:shadow-lg sm:w-auto">
                   Schedule a Demo
                 </a>
-                <a href="/pos" className="rounded-full border border-slate-300 px-6 py-3 font-semibold text-slate-900 transition duration-300 hover:-translate-y-0.5 hover:bg-slate-50">
+                <a href="/pos" className="w-full rounded-full border border-slate-300 px-6 py-3 text-center font-semibold text-slate-900 transition duration-300 hover:-translate-y-0.5 hover:bg-slate-50 sm:w-auto">
                   Explore All Solutions
                 </a>
               </div>
             </div>
 
-            <div className="mt-16 grid gap-6 sm:grid-cols-3">
+            <div className="mt-12 grid gap-4 sm:grid-cols-3 sm:mt-16">
               {restaurantStats.map((stat) => (
                 <div key={stat.label} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                   <div className="text-2xl font-bold text-slate-900">{stat.value}</div>
@@ -162,15 +162,15 @@ export default function Restaurant() {
         </section>
 
         {/* Solution Overview */}
-        <section className="border-b border-slate-200/80 py-16 lg:py-20">
-          <div className="container">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Why Choose Our Solution</p>
-            <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">Cloud-Based Restaurant Platform</h2>
-            <p className="mt-4 max-w-2xl text-lg text-slate-600">
+        <section className="border-b border-slate-200/80 px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto max-w-7xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-indigo-600 sm:text-sm">Why Choose Our Solution</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl lg:text-4xl">Cloud-Based Restaurant Platform</h2>
+            <p className="mt-4 max-w-2xl text-base text-slate-600 sm:text-lg">
               Designed for modern restaurants that demand efficiency, accuracy, and growth. Our cloud-based POS system is accessible from any device—tablets, smartphones, or terminals—making it flexible for your operations.
             </p>
 
-            <div className="mt-12 grid gap-8 sm:grid-cols-3">
+            <div className="mt-10 grid gap-6 sm:grid-cols-3 sm:mt-12">
               <div className="space-y-2">
                 <div className="text-2xl font-black text-amber-500">✓</div>
                 <h3 className="text-lg font-semibold text-slate-900">Real-Time Operations</h3>
@@ -191,12 +191,12 @@ export default function Restaurant() {
         </section>
 
         {/* Core Capabilities */}
-        <section className="border-b border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-slate-100/50 py-16 lg:py-20">
-          <div className="container">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Core Features</p>
-            <h2 className="mt-3 text-3xl font-semibold text-slate-900">Powerful Capabilities Built for Restaurants</h2>
+        <section className="border-b border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-slate-100/50 px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto max-w-7xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-indigo-600 sm:text-sm">Core Features</p>
+            <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">Powerful Capabilities Built for Restaurants</h2>
 
-            <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 sm:mt-12">
               {coreCapabilities.map((capability, index) => (
                 <div key={capability.title} className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                   <div className="flex-shrink-0">
@@ -213,17 +213,17 @@ export default function Restaurant() {
         </section>
 
         {/* Key Functions */}
-        <section className="border-b border-slate-200/80 py-16 lg:py-20">
-          <div className="container">
+        <section className="border-b border-slate-200/80 px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto max-w-7xl">
             <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Key Functions</p>
-              <h2 className="mt-3 text-3xl font-semibold text-slate-900">Everything You Need to Run a Successful Restaurant</h2>
-              <p className="mt-4 text-lg text-slate-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-indigo-600 sm:text-sm">Key Functions</p>
+              <h2 className="mt-3 text-2xl font-semibold text-slate-900 sm:text-3xl">Everything You Need to Run a Successful Restaurant</h2>
+              <p className="mt-4 text-base text-slate-600 sm:text-lg">
                 From staff management to financial integration, our solution covers every operational aspect of your restaurant.
               </p>
             </div>
 
-            <div className="mt-12 grid gap-4 sm:grid-cols-2">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:mt-12">
               {keyFunctions.map((func) => (
                 <div key={func} className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50/50 p-4">
                   <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-100">
@@ -237,12 +237,12 @@ export default function Restaurant() {
         </section>
 
         {/* Success Metrics */}
-        <section className="border-b border-slate-200/80 bg-gradient-to-b from-slate-900 to-slate-950 py-16 text-white lg:py-20">
-          <div className="container">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-400">Proven Results</p>
-            <h2 className="mt-3 text-3xl font-semibold">Measurable Impact on Your Business</h2>
+        <section className="border-b border-slate-200/80 bg-gradient-to-b from-slate-900 to-slate-950 px-4 py-12 text-white sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto max-w-7xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400 sm:text-sm">Proven Results</p>
+            <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Measurable Impact on Your Business</h2>
 
-            <div className="mt-12 grid gap-8 sm:grid-cols-3">
+            <div className="mt-10 grid gap-6 sm:grid-cols-3 sm:mt-12">
               {successMetrics.map((metric) => (
                 <div key={metric.label} className="text-center">
                   <div className="text-5xl font-black text-amber-400">{metric.value}</div>
@@ -254,13 +254,13 @@ export default function Restaurant() {
         </section>
 
         {/* CTA Section */}
-        <section className="border-b border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-slate-100/50 py-16 lg:py-20">
-          <div className="container flex flex-col items-center text-center">
-            <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">Ready to Transform Your Restaurant?</h2>
-            <p className="mt-4 max-w-2xl text-lg text-slate-600">
+        <section className="border-b border-slate-200/80 bg-gradient-to-b from-slate-50/50 to-slate-100/50 px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <h2 className="text-2xl font-semibold text-slate-900 sm:text-3xl lg:text-4xl">Ready to Transform Your Restaurant?</h2>
+            <p className="mt-4 max-w-2xl text-base text-slate-600 sm:text-lg">
               Join hundreds of restaurants already using our POS system to streamline operations and boost profitability.
             </p>
-            <a href="/contact" className="mt-8 rounded-full bg-amber-500 px-6 py-3 font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-amber-600 hover:shadow-lg">
+            <a href="/contact" className="mt-8 w-full rounded-full bg-amber-500 px-6 py-3 text-center font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-amber-600 hover:shadow-lg sm:w-auto">
               Book a Consultation
             </a>
           </div>
@@ -269,4 +269,8 @@ export default function Restaurant() {
       <Footer />
     </div>
   )
+}
+
+export function getServerSideProps() {
+  return { props: {} }
 }

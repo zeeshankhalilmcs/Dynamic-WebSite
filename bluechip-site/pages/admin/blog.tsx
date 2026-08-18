@@ -250,3 +250,8 @@ export default function AdminBlogPage() {
     </AdminLayout>
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}
+

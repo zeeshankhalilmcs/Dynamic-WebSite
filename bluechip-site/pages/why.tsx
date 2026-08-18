@@ -46,19 +46,19 @@ export default function Why() {
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_right,_rgba(16,185,129,0.14),_transparent_30%),linear-gradient(180deg,_#f8fafc_0%,_#f3f4f6_100%)]">
       <Header />
-      <main className="container py-16 lg:py-24">
+      <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-24">
         <section className="glass-card overflow-hidden border-slate-200/80 bg-white/80 p-0">
           <div className="grid gap-0 lg:grid-cols-[1.02fr_0.98fr] lg:items-stretch">
-            <div className="p-8 lg:p-12">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">Why clients choose us</p>
-              <h1 className="mt-4 text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
+            <div className="p-5 sm:p-8 lg:p-12">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600 sm:text-sm">Why clients choose us</p>
+              <h1 className="mt-4 text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl lg:text-5xl">
                 A pragmatic technology partner for businesses that need dependable growth.
               </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 We bring strategic thinking, implementation discipline, and long-term support together so your team gets systems that are practical, scalable, and easy to trust.
               </p>
 
-              <div className="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-50/80 p-6">
+              <div className="mt-8 rounded-[1.5rem] border border-slate-200 bg-slate-50/80 p-4 sm:p-6">
                 <ul className="space-y-3 text-sm text-slate-700">
                   {reasons.map((item) => (
                     <li key={item} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
@@ -98,17 +98,17 @@ export default function Why() {
 
         <section className="mt-8 grid gap-4 md:grid-cols-3">
           {pillars.map((pillar) => (
-            <div key={pillar.title} className="rounded-[1.5rem] border border-slate-200 bg-white/80 p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-slate-900">{pillar.title}</h3>
+            <div key={pillar.title} className="rounded-[1.5rem] border border-slate-200 bg-white/80 p-5 shadow-sm sm:p-6">
+              <h3 className="text-base font-semibold text-slate-900 sm:text-lg">{pillar.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{pillar.copy}</p>
             </div>
           ))}
         </section>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-[2rem] border border-slate-200 bg-slate-950 p-8 text-white shadow-[0_25px_70px_-25px_rgba(15,23,42,0.35)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Our story</p>
-            <h2 className="mt-3 text-2xl font-semibold">Built around real business needs, not generic software templates.</h2>
+          <div className="rounded-[2rem] border border-slate-200 bg-slate-950 p-5 text-white shadow-[0_25px_70px_-25px_rgba(15,23,42,0.35)] sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400 sm:text-sm">Our story</p>
+            <h2 className="mt-3 text-xl font-semibold sm:text-2xl">Built around real business needs, not generic software templates.</h2>
             <p className="mt-4 text-base leading-7 text-slate-300">
               We work closely with teams to understand the way work actually happens, then translate that into dependable systems that support growth without unnecessary friction.
             </p>
@@ -122,9 +122,9 @@ export default function Why() {
             </div>
           </div>
 
-          <div className="glass-card border-slate-200/80 bg-white/80 p-8 lg:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600">What this means for your business</p>
-            <h2 className="mt-3 text-2xl font-semibold text-slate-900">A calm, credible partner for growth, modernization, and execution.</h2>
+          <div className="glass-card border-slate-200/80 bg-white/80 p-5 sm:p-8 lg:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600 sm:text-sm">What this means for your business</p>
+            <h2 className="mt-3 text-xl font-semibold text-slate-900 sm:text-2xl">A calm, credible partner for growth, modernization, and execution.</h2>
             <div className="mt-6 space-y-4">
               <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50/80 p-4">
                 <div className="text-base font-semibold text-slate-900">Practical delivery</div>
@@ -150,4 +150,8 @@ export default function Why() {
       <Footer />
     </div>
   )
+}
+
+export function getServerSideProps() {
+  return { props: {} }
 }

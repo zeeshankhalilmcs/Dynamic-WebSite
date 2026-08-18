@@ -108,3 +108,8 @@ export default function AdminDashboard() {
     </AdminLayout>
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}
+

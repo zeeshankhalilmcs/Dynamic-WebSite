@@ -11,7 +11,7 @@ type Props = {
   billingMode?: BillingMode
 }
 
-const phoneNumber = '923087607119'
+const phoneNumber = '923317003618' // BlueChip Solution WhatsApp number
 
 function buildWhatsappUrl(name: string, phone: string, planName?: string, billingMode?: BillingMode) {
   const billingLabel = billingMode === 'yearly' ? 'Yearly' : 'Monthly'

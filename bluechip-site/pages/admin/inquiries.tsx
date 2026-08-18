@@ -133,3 +133,8 @@ export default function AdminInquiriesPage() {
     </AdminLayout>
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}
+

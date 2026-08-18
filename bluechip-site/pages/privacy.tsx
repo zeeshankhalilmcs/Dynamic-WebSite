@@ -74,3 +74,7 @@ export default function Privacy(){
     </div>
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}

@@ -3,6 +3,29 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
+// Lazy-load the analytics hook only on client side
+function useAnalyticsLazy() {
+  const [analytics, setAnalytics] = useState<any>(null)
+
+  useEffect(() => {
+    const loadAnalytics = async () => {
+      try {
+        const { useAnalytics } = await import('../hooks/useAnalytics')
+        const analyticsInstance = useAnalytics()
+        setAnalytics(analyticsInstance)
+      } catch (error) {
+        console.error('Failed to load analytics:', error)
+      }
+    }
+
+    if (typeof window !== 'undefined') {
+      loadAnalytics()
+    }
+  }, [])
+
+  return analytics
+}
+
 type FormData = {
   firstName: string
   lastName: string
@@ -18,6 +41,7 @@ type FormData = {
 export default function ContactForm(){
   const router = useRouter()
   const { register, handleSubmit, getValues, setValue, formState: { isSubmitting } } = useForm<FormData>({ defaultValues: { inquiryType: 'General' } })
+  const analytics = useAnalyticsLazy()
   const [success, setSuccess] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [verificationEnabled, setVerificationEnabled] = useState(false)
@@ -87,11 +111,37 @@ export default function ContactForm(){
 
       const payload = { ...data }
       await axios.post('/api/contact', payload)
+      
+      // Track successful contact form submission (if analytics loaded)
+      if (analytics?.trackEvent) {
+        analytics.trackEvent('contact_form_submitted', {
+          inquiryType: data.inquiryType,
+          hasPhone: !!data.phone,
+          hasMessage: !!data.message,
+        })
+      }
+
+      // Identify the user in analytics (if analytics loaded)
+      if (analytics?.identifyUser) {
+        const name = `${data.firstName} ${data.lastName}`.trim()
+        await analytics.identifyUser(data.email, name, {
+          phone: data.phone,
+          source: 'contact_form',
+        })
+      }
+
       setSubmissionComplete(true)
       setSuccess(successMessage)
     }catch(err:any){
       const apiError = err?.response?.data
       setError(apiError?.reason ? `${apiError.error || 'Submission failed.'} (${apiError.reason})` : apiError?.error || 'Submission failed. Please try again later.')
+      
+      // Track failed submission (if analytics loaded)
+      if (analytics?.trackEvent) {
+        analytics.trackEvent('contact_form_error', {
+          error: apiError?.error || 'unknown',
+        })
+      }
     }
   }
 

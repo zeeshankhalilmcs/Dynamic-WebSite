@@ -118,3 +118,8 @@ export default function AdminLoginPage() {
     </div>
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}
+

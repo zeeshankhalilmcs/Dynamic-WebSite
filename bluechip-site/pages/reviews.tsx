@@ -85,3 +85,7 @@ export default function Reviews() {
     </div>
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}

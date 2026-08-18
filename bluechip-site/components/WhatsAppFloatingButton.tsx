@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import WhatsAppLeadModal from './WhatsAppLeadModal'
 
-const phoneNumber = '923087607119'
+const phoneNumber = '923497037088'
 const defaultMessage = 'Hi BlueChip Solution, I want to inquire about POS system. Thanks'
 
 function buildWhatsappUrl(phone: string, message: string) {

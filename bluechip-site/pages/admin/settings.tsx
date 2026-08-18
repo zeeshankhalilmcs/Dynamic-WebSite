@@ -501,3 +501,8 @@ export default function AdminSettingsPage() {
     </AdminLayout>
   )
 }
+
+export function getServerSideProps() {
+  return { props: {} }
+}
+
