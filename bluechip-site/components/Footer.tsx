@@ -7,7 +7,7 @@ export default function Footer(){
         <div>
           <div className="text-lg font-semibold text-slate-900">BlueChip Solution</div>
           <p className="mt-3 max-w-md text-sm leading-6 text-slate-600">
-            Delivering intelligent business systems with the reliability, clarity, and support modern teams expect.
+            Business software and Retail POS solutions that help Businesses streamline Operations, Manage Sales and Grow efficiently.
           </p>
         </div>
         <div>
